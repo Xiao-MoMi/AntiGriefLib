@@ -9,7 +9,7 @@ val projectGroup : String by project
 subprojects {
 
     apply(plugin = "java")
-    apply(plugin = "org.gradle.maven-publish")
+    apply(plugin = "maven-publish")
 
     tasks.jar {
         archiveFileName = "AntiGriefLib-${projectVersion}.jar"
