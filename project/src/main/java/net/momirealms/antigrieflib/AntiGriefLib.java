@@ -202,6 +202,30 @@ public class AntiGriefLib {
         if (manager.getPlugin("FabledSkyBlock") != null) {
             registerNewCompatibility(new FabledSkyBlockComp(plugin));
         }
+        if (manager.getPlugin("GriefPrevention") != null) {
+            registerNewCompatibility(new GriefPreventionComp(plugin));
+        }
+        if (manager.getPlugin("RedProtect") != null) {
+            registerNewCompatibility(new RedProtectComp(plugin));
+        }
+        if (manager.getPlugin("Landlord") != null) {
+            registerNewCompatibility(new LandlordComp(plugin));
+        }
+        if (manager.getPlugin("uSkyBlock") != null) {
+            registerNewCompatibility(new USkyBlockComp(plugin));
+        }
+        if (manager.getPlugin("Factions") != null) {
+            try {
+                Class.forName("com.massivecraft.factions.zcore.fperms.PermissableAction");
+                registerNewCompatibility(new SaberFactionsComp(plugin));
+            } catch (ClassNotFoundException ignore) {
+            }
+            try {
+                Class.forName("com.massivecraft.factions.perms.PermissibleActions");
+                registerNewCompatibility(new FactionsUUIDComp(plugin));
+            } catch (ClassNotFoundException ignore) {
+            }
+        }
     }
 
     private void logHook(String pluginName) {

@@ -1,21 +1,25 @@
 package net.momirealms.antigrieflib.comp;
 
-import com.craftaro.skyblock.api.SkyBlockAPI;
 import net.momirealms.antigrieflib.AbstractComp;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import us.talabrek.ultimateskyblock.api.uSkyBlockAPI;
 
 import java.util.Optional;
 
-public class FabledSkyBlockComp extends AbstractComp {
+public class USkyBlockComp extends AbstractComp {
 
-    public FabledSkyBlockComp(JavaPlugin plugin) {
-        super(plugin, "FabledSkyBlock");
+    private uSkyBlockAPI api;
+
+    public USkyBlockComp(JavaPlugin plugin) {
+        super(plugin, "uSkyBlock");
     }
 
     @Override
     public void init() {
+        api = (uSkyBlockAPI) Bukkit.getPluginManager().getPlugin("uSkyBlock");
     }
 
     @Override
@@ -34,8 +38,8 @@ public class FabledSkyBlockComp extends AbstractComp {
     }
 
     private boolean isIslandMember(Player player, Location location) {
-        return Optional.ofNullable(SkyBlockAPI.getIslandManager().getIslandAtLocation(location))
-                .map(island -> island.getOwnerUUID() == player.getUniqueId() || island.isCoopPlayer(player.getUniqueId()))
-                .orElse(true);
+        return Optional.ofNullable(api.getIslandInfo(location)).map(islandInfo -> {
+            return islandInfo.getMembers().contains(player.getName());
+        }).orElse(true);
     }
 }
