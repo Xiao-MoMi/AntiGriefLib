@@ -25,5 +25,8 @@ dependencies {
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2023.3")                      // SuperiorSkyblock2
     compileOnly("com.palmergames.bukkit.towny:towny:0.100.1.17")                  // Towny
     compileOnly("com.craftaro:FabledSkyBlock:3.0.4")                              // FabledSkyBlock
+    compileOnly(files("libs/Residence-pruned.jar"))                        // Residence
+    compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX
+    compileOnly(files("libs/CrashClaim-pruned.jar"))                       // CrashClaim
 }
 

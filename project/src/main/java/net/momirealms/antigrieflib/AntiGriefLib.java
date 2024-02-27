@@ -59,7 +59,7 @@ public class AntiGriefLib {
      * @return has perm or not
      */
     public boolean canPlace(Player player, Location location) {
-        if (!ignoreOP && player.isOp()) return true;
+        if (ignoreOP && player.isOp()) return true;
         for (AntiGriefPlugin antiGriefPlugin : plugins) {
             if (!antiGriefPlugin.canPlace(player, location)) {
                 return false;
@@ -76,7 +76,7 @@ public class AntiGriefLib {
      * @return has perm or not
      */
     public boolean canBreak(Player player, Location location) {
-        if (!ignoreOP && player.isOp()) return true;
+        if (ignoreOP && player.isOp()) return true;
         for (AntiGriefPlugin antiGriefPlugin : plugins) {
             if (!antiGriefPlugin.canBreak(player, location)) {
                 return false;
@@ -93,7 +93,7 @@ public class AntiGriefLib {
      * @return has perm or not
      */
     public boolean canInteract(Player player, Location location) {
-        if (!ignoreOP && player.isOp()) return true;
+        if (ignoreOP && player.isOp()) return true;
         for (AntiGriefPlugin antiGriefPlugin : plugins) {
             if (!antiGriefPlugin.canInteract(player, location)) {
                 return false;
