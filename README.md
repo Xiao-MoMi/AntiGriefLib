@@ -18,8 +18,11 @@ Residence \
 SaberFactions \
 SuperiorSkyBlock \
 Towny \
+UltimateClaims \
+UltimateClans \
 USkyBlock \
-WorldGuard 
+WorldGuard \
+XClaim
 
 ### Use this project as dependency
 ![GitHub](https://img.shields.io/github/license/Xiao-MoMi/AntiGriefLib)

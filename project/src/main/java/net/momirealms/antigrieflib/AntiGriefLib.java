@@ -214,6 +214,15 @@ public class AntiGriefLib {
         if (manager.getPlugin("uSkyBlock") != null) {
             registerNewCompatibility(new USkyBlockComp(plugin));
         }
+        if (manager.getPlugin("XClaim") != null) {
+            registerNewCompatibility(new XClaimComp(plugin));
+        }
+        if (manager.getPlugin("UltimateClaims") != null) {
+            registerNewCompatibility(new UltimateClaimsComp(plugin));
+        }
+        if (manager.getPlugin("UltimateClans") != null) {
+            registerNewCompatibility(new UltimateClansComp(plugin));
+        }
         if (manager.getPlugin("Factions") != null) {
             try {
                 Class.forName("com.massivecraft.factions.zcore.fperms.PermissableAction");
