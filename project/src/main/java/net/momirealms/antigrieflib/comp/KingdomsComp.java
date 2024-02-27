@@ -4,9 +4,10 @@ import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.kingdoms.constants.group.Kingdom;
 import org.kingdoms.constants.land.Land;
 import org.kingdoms.constants.player.KingdomPlayer;
+
+import java.util.Optional;
 
 public class KingdomsComp extends AbstractComp {
 
@@ -37,8 +38,8 @@ public class KingdomsComp extends AbstractComp {
         Land land = Land.getLand(location);
         if (land == null || !land.isClaimed())
             return true;
-        KingdomPlayer kp = KingdomPlayer.getKingdomPlayer(player);
-        Kingdom currentKingdom = land.getKingdom();
-        return kp.getKingdom() == currentKingdom;
+        return Optional.ofNullable(land.getKingdom())
+                .map(kingdom -> KingdomPlayer.getKingdomPlayer(player).getKingdom() == kingdom)
+                .orElse(true);
     }
 }

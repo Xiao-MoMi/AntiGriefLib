@@ -1,12 +1,13 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.griefdefender.api.GriefDefender;
-import com.griefdefender.api.User;
 import com.griefdefender.api.claim.TrustTypes;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Optional;
 
 public class GriefDefenderComp extends AbstractComp {
 
@@ -20,22 +21,22 @@ public class GriefDefenderComp extends AbstractComp {
 
     @Override
     public boolean canPlace(Player player, Location location) {
-        User user = GriefDefender.getCore().getUser(player.getUniqueId());
-        if (user == null) return false;
-        return user.canPlace(player.getInventory().getItemInMainHand(), location);
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(user -> user.canPlace(player.getInventory().getItemInMainHand(), location))
+                .orElse(false);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
-        User user = GriefDefender.getCore().getUser(player.getUniqueId());
-        if (user == null) return false;
-        return user.canBreak(location);
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(user -> user.canBreak(location))
+                .orElse(false);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
-        User user = GriefDefender.getCore().getUser(player.getUniqueId());
-        if (user == null) return false;
-        return user.canUseBlock(location, TrustTypes.CONTAINER, false, false);
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(user -> user.canUseBlock(location, TrustTypes.CONTAINER, false, false))
+                .orElse(false);
     }
 }

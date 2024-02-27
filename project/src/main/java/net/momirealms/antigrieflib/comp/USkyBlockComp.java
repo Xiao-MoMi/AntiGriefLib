@@ -38,8 +38,8 @@ public class USkyBlockComp extends AbstractComp {
     }
 
     private boolean isIslandMember(Player player, Location location) {
-        return Optional.ofNullable(api.getIslandInfo(location)).map(islandInfo -> {
-            return islandInfo.getMembers().contains(player.getName());
-        }).orElse(true);
+        return Optional.ofNullable(api.getIslandInfo(location))
+                .map(islandInfo -> islandInfo.getMembers().contains(player.getName()))
+                .orElse(true);
     }
 }
