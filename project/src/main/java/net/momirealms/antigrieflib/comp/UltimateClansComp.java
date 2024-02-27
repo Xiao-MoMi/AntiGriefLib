@@ -1,7 +1,5 @@
 package net.momirealms.antigrieflib.comp;
 
-import com.craftaro.ultimateclaims.UltimateClaims;
-import com.craftaro.ultimateclaims.member.ClaimPerm;
 import me.ulrich.clans.Clans;
 import me.ulrich.clans.interfaces.ClaimImplement;
 import net.momirealms.antigrieflib.AbstractComp;
@@ -11,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class UltimateClansComp extends AbstractComp {
 

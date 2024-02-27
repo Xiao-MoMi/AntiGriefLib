@@ -27,7 +27,7 @@ public class LandsComp extends AbstractComp implements CustomFlag {
 
     @Override
     public void init() {
-        this.api = LandsIntegration.of(getPlugin());;
+        this.api = LandsIntegration.of(getPlugin());
     }
 
     @Override

@@ -2,8 +2,6 @@ package net.momirealms.antigrieflib.comp;
 
 import com.craftaro.ultimateclaims.UltimateClaims;
 import com.craftaro.ultimateclaims.member.ClaimPerm;
-import me.ulrich.clans.Clans;
-import me.ulrich.clans.api.RegionAPIManager;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

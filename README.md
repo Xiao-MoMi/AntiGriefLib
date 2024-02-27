@@ -26,14 +26,15 @@ XClaim
 
 ### Use this project as dependency
 ![GitHub](https://img.shields.io/github/license/Xiao-MoMi/AntiGriefLib)
-[![](https://jitpack.io/v/Xiao-MoMi/AntiGriefLib.svg)](https://jitpack.io/#Xiao-MoMi/AntiGriefLib) \
+[![](https://jitpack.io/v/Xiao-MoMi/AntiGriefLib.svg)](https://jitpack.io/#Xiao-MoMi/AntiGriefLib)
+[![CodeFactor](https://www.codefactor.io/repository/github/xiao-momi/antigrieflib/badge)](https://www.codefactor.io/repository/github/xiao-momi/antigrieflib) \
 Gradle (kts)
-```
+```kotlin
 repositories {
     maven("https://jitpack.io/")
 }
 ```
-```
+```kotlin
 dependencies {
     compileOnly("com.github.Xiao-MoMi:AntiGriefLib:{LATEST}")
 }
@@ -41,7 +42,7 @@ dependencies {
 
 ### API Guide
 ```java
-// create a lib instance
+// create a lib instance on plugin load
 var lib = AntiGriefLib.builder(this)
                 .silentLogs(true)
                 .ignoreOP(true)
