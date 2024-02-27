@@ -27,7 +27,7 @@ subprojects {
                     groupId = "net.momirealms"
                     artifactId = "AntiGriefLib"
                     version = rootProject.version.toString()
-                    artifact(tasks.build)
+                    artifact(tasks.jar)
                 }
             }
         }
