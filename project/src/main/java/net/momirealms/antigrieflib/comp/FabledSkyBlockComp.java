@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.craftaro.skyblock.api.SkyBlockAPI;
+import com.craftaro.skyblock.api.island.IslandRole;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -35,7 +36,7 @@ public class FabledSkyBlockComp extends AbstractComp {
 
     private boolean isIslandMember(Player player, Location location) {
         return Optional.ofNullable(SkyBlockAPI.getIslandManager().getIslandAtLocation(location))
-                .map(island -> island.getOwnerUUID() == player.getUniqueId() || island.isCoopPlayer(player.getUniqueId()))
+                .map(island -> island.getRole(player) != IslandRole.VISITOR)
                 .orElse(true);
     }
 }
