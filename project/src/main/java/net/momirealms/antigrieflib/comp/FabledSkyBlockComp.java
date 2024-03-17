@@ -36,7 +36,10 @@ public class FabledSkyBlockComp extends AbstractComp {
 
     private boolean isIslandMember(Player player, Location location) {
         return Optional.ofNullable(SkyBlockAPI.getIslandManager().getIslandAtLocation(location))
-                .map(island -> island.getRole(player) != IslandRole.VISITOR)
+                .map(island -> Optional.ofNullable(island.getRole(player))
+                        .map(islandRole -> islandRole != IslandRole.VISITOR)
+                        .orElse(false)
+                )
                 .orElse(true);
     }
 }
