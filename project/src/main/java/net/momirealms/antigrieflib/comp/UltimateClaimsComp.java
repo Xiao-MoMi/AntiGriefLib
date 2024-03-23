@@ -5,6 +5,7 @@ import com.craftaro.ultimateclaims.member.ClaimPerm;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,5 +43,19 @@ public class UltimateClaimsComp extends AbstractComp {
         return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(location.getChunk()))
                 .map(claim -> claim.playerHasPerms(player, ClaimPerm.INTERACT))
                 .orElse(true);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(entity.getLocation().getChunk()))
+                .map(claim -> claim.playerHasPerms(player, ClaimPerm.INTERACT))
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(entity.getLocation().getChunk()))
+                .map(claim -> claim.playerHasPerms(player, ClaimPerm.MOB_KILLING))
+                .orElse(true) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 }

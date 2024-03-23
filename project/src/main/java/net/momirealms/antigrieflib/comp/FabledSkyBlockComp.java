@@ -4,6 +4,7 @@ import com.craftaro.skyblock.api.SkyBlockAPI;
 import com.craftaro.skyblock.api.island.IslandRole;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +33,16 @@ public class FabledSkyBlockComp extends AbstractComp {
     @Override
     public boolean canInteract(Player player, Location location) {
         return isIslandMember(player, location);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return isIslandMember(player, entity.getLocation());
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return isIslandMember(player, entity.getLocation()) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 
     private boolean isIslandMember(Player player, Location location) {

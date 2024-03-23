@@ -9,6 +9,8 @@ import net.momirealms.antigrieflib.AbstractComp;
 import net.momirealms.antigrieflib.CustomFlag;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
+import org.bukkit.entity.Enemy;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -64,6 +66,30 @@ public class LandsComp extends AbstractComp implements CustomFlag {
                                 INTERACT_FLAG == null ? Flags.INTERACT_GENERAL : INTERACT_FLAG
                         )
                 ).orElse(true);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return Optional.ofNullable(api.getWorld(entity.getWorld()))
+                .map(world ->
+                        world.hasRoleFlag(
+                                player.getUniqueId(),
+                                entity.getLocation(),
+                                INTERACT_FLAG == null ? Flags.INTERACT_GENERAL : INTERACT_FLAG
+                        )
+                ).orElse(true);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return Optional.ofNullable(api.getWorld(entity.getWorld()))
+                .map(world ->
+                        world.hasRoleFlag(
+                                player.getUniqueId(),
+                                entity.getLocation(),
+                                entity instanceof Enemy ? Flags.ATTACK_MONSTER : (entity instanceof Player) ? Flags.ATTACK_PLAYER : Flags.ATTACK_ANIMAL
+                        )
+                ).orElse(true) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 
     @Override
