@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib;
 import net.momirealms.antigrieflib.comp.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -102,6 +103,40 @@ public class AntiGriefLib {
         return true;
     }
 
+    /**
+     * Detects if a player has permission to interact with an entity
+     *
+     * @param player player
+     * @param entity entity
+     * @return has perm or not
+     */
+    public boolean canInteractEntity(Player player, Entity entity) {
+        if (ignoreOP && player.isOp()) return true;
+        for (AntiGriefPlugin antiGriefPlugin : plugins) {
+            if (!antiGriefPlugin.canInteractEntity(player, entity)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Detects if a player has permission to damage an entity
+     *
+     * @param player player
+     * @param entity entity
+     * @return has perm or not
+     */
+    public boolean canDamage(Player player, Entity entity) {
+        if (ignoreOP && player.isOp()) return true;
+        for (AntiGriefPlugin antiGriefPlugin : plugins) {
+            if (!antiGriefPlugin.canDamage(player, entity)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static class Builder {
 
         private final AntiGriefLib lib;
@@ -151,7 +186,7 @@ public class AntiGriefLib {
         }
     }
 
-    private void registerNewCompatibility(AntiGriefPlugin antiGriefPlugin) {
+    public void registerNewCompatibility(AntiGriefPlugin antiGriefPlugin) {
         this.plugins.add(antiGriefPlugin);
     }
 

@@ -10,6 +10,7 @@ import net.momirealms.antigrieflib.AbstractComp;
 import net.momirealms.antigrieflib.CustomFlag;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -95,6 +96,26 @@ public class IridiumSkyblockComp extends AbstractComp implements CustomFlag {
                         )
                         .orElse(true)
                 );
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return api.getIslandViaLocation(entity.getLocation())
+                .map(island -> api.getIslandPermission(
+                        island,
+                        api.getUser(player),
+                        PermissionType.OPEN_CONTAINERS) // FIXME: or use KILL_MOBS?
+                ).orElse(true);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return api.getIslandViaLocation(entity.getLocation())
+                .map(island -> api.getIslandPermission(
+                        island,
+                        api.getUser(player),
+                        PermissionType.KILL_MOBS)
+                ).orElse(true) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 
     @Override

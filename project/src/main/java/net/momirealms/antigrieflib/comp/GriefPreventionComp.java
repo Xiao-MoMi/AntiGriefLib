@@ -6,6 +6,7 @@ import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +33,16 @@ public class GriefPreventionComp extends AbstractComp {
     @Override
     public boolean canInteract(Player player, Location location) {
         return checkPermission(player, location, ClaimPermission.Inventory);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return checkPermission(player, entity.getLocation(), ClaimPermission.Inventory);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return checkPermission(player, entity.getLocation(), ClaimPermission.Inventory) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 
     private boolean checkPermission(Player player, Location location, ClaimPermission permission) {
