@@ -176,7 +176,7 @@ public class AntiGriefLib {
             registerNewCompatibility(new GriefDefenderComp(plugin));
         }
         if (manager.getPlugin("HuskClaims") != null) {
-            registerNewCompatibility(new GriefDefenderComp(plugin));
+            registerNewCompatibility(new HuskClaimsComp(plugin));
         }
         if (manager.getPlugin("BentoBox") != null) {
             registerNewCompatibility(new BentoBoxComp(plugin));
