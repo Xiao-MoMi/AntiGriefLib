@@ -54,7 +54,13 @@ public class RedProtectComp extends AbstractComp {
     @Override
     public boolean canDamage(Player player, Entity entity) {
         return Optional.ofNullable(api.getRegion(entity.getLocation()))
-                .map(region -> entity instanceof Player e ? region.canPVP(player, e) && e.getWorld().getPVP() : region.canBuild(player)) // FIXME
+                .map(region -> {
+                    if (entity instanceof Player another) {
+                        return region.canPVP(player, another);
+                    } else {
+                        return region.canBuild(player);
+                    }
+                })
                 .orElse(true);
     }
 }

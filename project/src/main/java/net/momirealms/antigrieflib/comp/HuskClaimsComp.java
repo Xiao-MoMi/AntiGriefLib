@@ -43,6 +43,6 @@ public class HuskClaimsComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return api.isOperationAllowed(api.getOnlineUser(player), OperationType.PLAYER_DAMAGE_ENTITY, api.getPosition(entity.getLocation())) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return api.isOperationAllowed(api.getOnlineUser(player), OperationType.PLAYER_DAMAGE_ENTITY, api.getPosition(entity.getLocation()));
     }
 }

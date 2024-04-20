@@ -52,6 +52,6 @@ public class GriefDefenderComp extends AbstractComp {
     public boolean canDamage(Player player, Entity entity) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
                 .map(user -> user.canHurtEntity(player.getInventory().getItemInMainHand(), entity))
-                .orElse(false) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+                .orElse(false);
     }
 }

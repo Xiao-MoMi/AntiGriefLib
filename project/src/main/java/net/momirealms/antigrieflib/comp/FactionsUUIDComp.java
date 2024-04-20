@@ -44,12 +44,12 @@ public class FactionsUUIDComp extends AbstractComp {
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         if (!plugin.worldUtil().isEnabled(entity.getWorld())) return true;
-        return FactionsEntityListener.canDamage(player, entity, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, entity.getLocation(), PermissibleActions.CONTAINER, false);
     }
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        if (!plugin.worldUtil().isEnabled(entity.getWorld())) return !(entity instanceof Player) || entity.getWorld().getPVP();
-        return FactionsEntityListener.canDamage(player, entity, false) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        if (!plugin.worldUtil().isEnabled(entity.getWorld())) return true;
+        return FactionsEntityListener.canDamage(player, entity, false);
     }
 }

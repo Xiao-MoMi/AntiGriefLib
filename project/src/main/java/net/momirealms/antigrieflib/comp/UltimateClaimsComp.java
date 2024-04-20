@@ -56,6 +56,6 @@ public class UltimateClaimsComp extends AbstractComp {
     public boolean canDamage(Player player, Entity entity) {
         return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(entity.getLocation().getChunk()))
                 .map(claim -> claim.playerHasPerms(player, ClaimPerm.MOB_KILLING))
-                .orElse(true) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+                .orElse(true);
     }
 }

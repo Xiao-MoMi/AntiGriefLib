@@ -44,6 +44,6 @@ public class CrashClaimComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return api.getPermissionHelper().hasPermission(player.getUniqueId(), entity.getLocation(), PermissionRoute.ENTITIES) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return api.getPermissionHelper().hasPermission(player.getUniqueId(), entity.getLocation(), PermissionRoute.ENTITIES);
     }
 }

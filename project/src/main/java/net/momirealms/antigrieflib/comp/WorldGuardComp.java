@@ -6,17 +6,14 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.bukkit.util.Entities;
 import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.StateFlag;
-import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.CustomFlag;
-import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class WorldGuardComp extends AbstractComp implements CustomFlag {
+public class WorldGuardComp extends AbstractComp {
 
     private StateFlag PLACE_FLAG;
     private StateFlag BREAK_FLAG;
@@ -84,22 +81,5 @@ public class WorldGuardComp extends AbstractComp implements CustomFlag {
                         WorldGuardPlugin.inst().wrapPlayer(player),
                         entity instanceof Player ? Flags.PVP : flag
                 );
-    }
-
-    @Override
-    public void registerOnLoad(Flag customPlaceFlag, Flag customBreakFlag, Flag customInteractFlag) {
-        FlagRegistry registry = WorldGuard.getInstance().getFlagRegistry();
-        if (customPlaceFlag != null) {
-            PLACE_FLAG = new StateFlag(customPlaceFlag.getName(), customPlaceFlag.getDefaultValue());
-            registry.register(PLACE_FLAG);
-        }
-        if (customBreakFlag != null) {
-            BREAK_FLAG = new StateFlag(customBreakFlag.getName(), customBreakFlag.getDefaultValue());
-            registry.register(BREAK_FLAG);
-        }
-        if (customInteractFlag != null) {
-            INTERACT_FLAG = new StateFlag(customInteractFlag.getName(), customInteractFlag.getDefaultValue());
-            registry.register(INTERACT_FLAG);
-        }
     }
 }

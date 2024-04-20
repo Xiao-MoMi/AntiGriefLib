@@ -48,13 +48,16 @@ public class BentoBoxComp extends AbstractComp {
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
-        // I am not sure if I should use Flags.HURT_xxx or Flags.CONTAINER
-        return entityOperation(player, entity);
+        return BentoBox.getInstance()
+                .getIslands()
+                .getIslandAt(entity.getLocation())
+                .map(island -> island.isAllowed(User.getInstance(player), Flags.CONTAINER))
+                .orElse(true);
     }
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return entityOperation(player, entity) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return entityOperation(player, entity);
     }
 
     private boolean entityOperation(final Player player, final Entity entity) {

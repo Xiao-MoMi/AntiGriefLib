@@ -42,23 +42,12 @@ dependencies {
 
 ### API Guide
 ```java
-// create a lib instance on plugin load
-var lib = AntiGriefLib.builder(this)
+// Create a lib instance on plugin enable
+var lib = AntiGriefLib.builder(JavaPlugin)
                 .silentLogs(true)
                 .ignoreOP(true)
-                .placeFlag(
-                        Flag.builder("custom-place")
-                            .defaultValue(false)
-                            .displayName("Custom place")
-                            .description(List.of("My custom place flag"))
-                            .displayItem(new ItemStack(Material.STONE))
-                            .build()
-                )
                 .addCompatibility(new MyCustomAntiGriefImpl())
                 .build();
-
-// init the lib after all the compatible plugins enabled
-lib.init();
 
 // use the api to check permissions
 if (!lib.canPlace(player, location)) {

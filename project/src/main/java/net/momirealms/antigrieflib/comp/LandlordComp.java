@@ -45,7 +45,7 @@ public class LandlordComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return landlordMemberCheck(player, entity.getLocation()) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return landlordMemberCheck(player, entity.getLocation());
     }
 
     private boolean landlordMemberCheck(final Player player, final Location location) {

@@ -40,7 +40,7 @@ public class PlotSquaredComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return isPlotMember(player, entity.getLocation()) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return isPlotMember(player, entity.getLocation());
     }
 
     private boolean isPlotMember(Player player, Location location) {

@@ -42,7 +42,7 @@ public class FabledSkyBlockComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return isIslandMember(player, entity.getLocation()) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return isIslandMember(player, entity.getLocation());
     }
 
     private boolean isIslandMember(Player player, Location location) {

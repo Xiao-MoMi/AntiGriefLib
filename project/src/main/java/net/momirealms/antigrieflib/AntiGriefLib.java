@@ -15,9 +15,6 @@ public class AntiGriefLib {
 
     private final JavaPlugin plugin;
     private final Set<AntiGriefPlugin> plugins;
-    private Flag customPlaceFlag;
-    private Flag customBreakFlag;
-    private Flag customInteractFlag;
     private boolean ignoreOP;
     private boolean silentLogs;
 
@@ -29,15 +26,9 @@ public class AntiGriefLib {
         this.plugin = plugin;
     }
 
-    /**
-     * It's recommended to call this method after all the plugins are enabled
-     */
-    public void init() {
+    private void init() {
         for (AntiGriefPlugin antiGriefPlugin : plugins) {
             antiGriefPlugin.init();
-            if (antiGriefPlugin instanceof CustomFlag customFlag) {
-                customFlag.registerOnEnable(customPlaceFlag, customBreakFlag, customInteractFlag);
-            }
             logHook(antiGriefPlugin.getAntiGriefPluginName());
         }
     }
@@ -128,6 +119,9 @@ public class AntiGriefLib {
      * @return has perm or not
      */
     public boolean canDamage(Player player, Entity entity) {
+        if (entity instanceof Player another && !another.getWorld().getPVP()) {
+            return false;
+        }
         if (ignoreOP && player.isOp()) return true;
         for (AntiGriefPlugin antiGriefPlugin : plugins) {
             if (!antiGriefPlugin.canDamage(player, entity)) {
@@ -156,32 +150,13 @@ public class AntiGriefLib {
             return this;
         }
 
-        public Builder placeFlag(Flag flag) {
-            lib.customPlaceFlag = flag;
-            return this;
-        }
-
-        public Builder breakFlag(Flag flag) {
-            lib.customBreakFlag = flag;
-            return this;
-        }
-
-        public Builder interactFlag(Flag flag) {
-            lib.customInteractFlag = flag;
-            return this;
-        }
-
         public Builder addCompatibility(AntiGriefPlugin antiGriefPlugin) {
             lib.registerNewCompatibility(antiGriefPlugin);
             return this;
         }
 
         public AntiGriefLib build() {
-            for (AntiGriefPlugin antiGriefPlugin : lib.plugins) {
-                if (antiGriefPlugin instanceof CustomFlag customFlag) {
-                    customFlag.registerOnLoad(lib.customPlaceFlag, lib.customBreakFlag, lib.customInteractFlag);
-                }
-            }
+            lib.init();
             return lib;
         }
     }

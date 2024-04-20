@@ -5,7 +5,6 @@ import com.bekvon.bukkit.residence.listeners.ResidenceEntityListener;
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import com.bekvon.bukkit.residence.utils.Utils;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.CustomFlag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -13,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 
-public class ResidenceComp extends AbstractComp implements CustomFlag {
+public class ResidenceComp extends AbstractComp {
 
     public ResidenceComp(JavaPlugin plugin) {
         super(plugin, "Residence");
@@ -58,14 +57,15 @@ public class ResidenceComp extends AbstractComp implements CustomFlag {
                     if (entity instanceof Player e) {
                         final boolean src = com.bekvon.bukkit.residence.Residence.getInstance().getPermsByLoc(player.getLocation()).has(Flags.pvp, FlagPermissions.FlagCombo.TrueOrNone);
                         final boolean target = com.bekvon.bukkit.residence.Residence.getInstance().getPermsByLoc(e.getLocation()).has(Flags.pvp, FlagPermissions.FlagCombo.TrueOrNone);
-                        return src && target && player.getWorld().getPVP();
+                        return src && target;
                     }
                     if (Utils.isAnimal(entity)) {
                         return claimedResidence.getPermissions().playerHas(player, Flags.animalkilling, true);
                     } else if (ResidenceEntityListener.isMonster(entity)) {
                         return claimedResidence.getPermissions().playerHas(player, Flags.mobkilling, true);
+                    } else {
+                        return claimedResidence.getPermissions().playerHas(player, Flags.damage, true);
                     }
-                    return null;
                 })
                 .orElse(true);
     }

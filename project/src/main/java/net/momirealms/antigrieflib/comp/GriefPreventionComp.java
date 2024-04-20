@@ -42,7 +42,7 @@ public class GriefPreventionComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return checkPermission(player, entity.getLocation(), ClaimPermission.Inventory) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return checkPermission(player, entity.getLocation(), ClaimPermission.Inventory);
     }
 
     private boolean checkPermission(Player player, Location location, ClaimPermission permission) {

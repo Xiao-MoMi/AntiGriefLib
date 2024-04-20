@@ -6,7 +6,6 @@ import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.world.BukkitEntities;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.CustomFlag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 
-public class SuperiorSkyblockComp extends AbstractComp implements CustomFlag {
+public class SuperiorSkyblockComp extends AbstractComp {
 
     public SuperiorSkyblockComp(JavaPlugin plugin) {
         super(plugin, "SuperiorSkyblock2");
@@ -56,7 +55,6 @@ public class SuperiorSkyblockComp extends AbstractComp implements CustomFlag {
     public boolean canDamage(Player player, Entity entity) {
         final BukkitEntities.EntityCategory category = BukkitEntities.getCategory(entity.getType());
         final SuperiorSkyblockPlugin plugin = SuperiorSkyblockPlugin.getPlugin(SuperiorSkyblockPlugin.class);
-
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(entity.getLocation()))
                 .map(island -> {
                     boolean banPvp = false;
@@ -68,7 +66,7 @@ public class SuperiorSkyblockComp extends AbstractComp implements CustomFlag {
                                             (!plugin.getSettings().isCoopDamage() && island.isCoop(targetPlayer)));
                         }
                     }
-                    return entity instanceof Player ? !banPvp && entity.getWorld().getPVP() : island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), category.getDamagePrivilege());
+                    return entity instanceof Player ? !banPvp : island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), category.getDamagePrivilege());
                 })
                 .orElse(true);
     }

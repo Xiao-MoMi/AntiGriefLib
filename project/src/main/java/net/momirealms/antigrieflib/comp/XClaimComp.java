@@ -54,23 +54,17 @@ public class XClaimComp extends AbstractComp {
     @Override
     public boolean canDamage(Player player, Entity entity) {
         final Optional<EntityGroup> og = Arrays.stream(EntityGroup.values()).filter(g -> g.contains(entity)).findFirst();
-        if (og.isEmpty() && (!(entity instanceof Player))) return true;
+        if (og.isEmpty()) return true;
         final EntityGroup group = og.get();
-        final Permission per = switch (group.name().toUpperCase()) {
-            case "FRIENDLY" -> Permission.ENTITY_DAMAGE_FRIENDLY;
-            case "HOSTILE" -> Permission.ENTITY_DAMAGE_HOSTILE;
-            case "VEHICLE" -> Permission.ENTITY_DAMAGE_VEHICLE;
-            case "NOT_ALIVE" -> Permission.ENTITY_DAMAGE_NL;
-            case "MISC" -> Permission.ENTITY_DAMAGE_MISC;
-            default -> null;
+        final Permission per = switch (group) {
+            case FRIENDLY -> Permission.ENTITY_DAMAGE_FRIENDLY;
+            case HOSTILE -> Permission.ENTITY_DAMAGE_HOSTILE;
+            case VEHICLE -> Permission.ENTITY_DAMAGE_VEHICLE;
+            case NOT_ALIVE -> Permission.ENTITY_DAMAGE_NL;
+            case MISC -> Permission.ENTITY_DAMAGE_MISC;
         };
-        // FIXME: I'm failed to find any permission of PVP
-        if (per == null) {
-            return player.getWorld().getPVP();
-        } else {
-            return Optional.ofNullable(Claim.getByChunk(entity.getChunk()))
-                    .map(claim -> claim.getUserPermission(player, per))
-                    .orElse(true);
-        }
+        return Optional.ofNullable(Claim.getByChunk(entity.getChunk()))
+                .map(claim -> claim.getUserPermission(player, per))
+                .orElse(true);
     }
 }

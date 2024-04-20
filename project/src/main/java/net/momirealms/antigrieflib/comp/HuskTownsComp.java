@@ -42,7 +42,7 @@ public class HuskTownsComp extends AbstractComp {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
-        return isTownMember(player, entity.getLocation()) && (!(entity instanceof Player) || entity.getWorld().getPVP());
+        return isTownMember(player, entity.getLocation());
     }
 
     public boolean isTownMember(Player player, Location location) {
