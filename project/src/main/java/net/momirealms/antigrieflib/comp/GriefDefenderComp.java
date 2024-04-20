@@ -4,6 +4,7 @@ import com.griefdefender.api.GriefDefender;
 import com.griefdefender.api.claim.TrustTypes;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,5 +39,19 @@ public class GriefDefenderComp extends AbstractComp {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
                 .map(user -> user.canUseBlock(location, TrustTypes.CONTAINER, false, false))
                 .orElse(false);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(user -> user.canInteractWithEntity(player.getInventory(), entity, TrustTypes.CONTAINER))
+                .orElse(false);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(user -> user.canHurtEntity(player.getInventory().getItemInMainHand(), entity))
+                .orElse(false) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 }

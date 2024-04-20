@@ -30,7 +30,7 @@ dependencies {
     compileOnly("net.william278.husktowns:husktowns-bukkit:3.0.2")                // HuskTowns
     compileOnly("net.william278.huskclaims:huskclaims-bukkit:1.0.3")              // HuskClaims
     compileOnly("com.intellectualsites.plotsquared:plotsquared-bukkit:7.3.5")     // PlotSquared
-    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2023.3")                      // SuperiorSkyBlock2
+    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2023.3")                      // SuperiorSkyBlock2 - API
     compileOnly("com.palmergames.bukkit.towny:towny:0.100.1.17")                  // Towny
     compileOnly("com.craftaro:FabledSkyBlock:3.0.4")                              // FabledSkyBlock
     compileOnly("com.craftaro:UltimateClaims:2.2.0")                              // FabledSkyBlock
@@ -45,6 +45,7 @@ dependencies {
     compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX
     compileOnly(files("libs/CrashClaim-pruned.jar"))                       // CrashClaim
     compileOnly(files("libs/XClaim.jar"))                                  // XClaim
+    compileOnly(files("libs/SuperiorSkyblock2-2023.3.jar"))                // SuperiorSkyBlock2 - Plugin
 
     compileOnly("io.github.fabiozumbi12.RedProtect:RedProtect-Core:8.1.1") { exclude(group = "*") }        // RedProtect
     compileOnly("io.github.fabiozumbi12.RedProtect:RedProtect-Spigot:8.1.1") { exclude(group = "*") }      // RedProtect

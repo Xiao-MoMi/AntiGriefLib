@@ -5,6 +5,7 @@ import net.crashcraft.crashclaim.api.CrashClaimAPI;
 import net.crashcraft.crashclaim.permissions.PermissionRoute;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,5 +35,15 @@ public class CrashClaimComp extends AbstractComp {
     @Override
     public boolean canInteract(Player player, Location location) {
         return api.getPermissionHelper().hasPermission(player.getUniqueId(), location, PermissionRoute.INTERACTIONS);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return api.getPermissionHelper().hasPermission(player.getUniqueId(), entity.getLocation(), PermissionRoute.ENTITIES);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return api.getPermissionHelper().hasPermission(player.getUniqueId(), entity.getLocation(), PermissionRoute.ENTITIES) && (!(entity instanceof Player) || entity.getWorld().getPVP());
     }
 }

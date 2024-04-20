@@ -4,6 +4,7 @@ import br.net.fabiozumbi12.RedProtect.Bukkit.API.RedProtectAPI;
 import br.net.fabiozumbi12.RedProtect.Bukkit.RedProtect;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,6 +41,20 @@ public class RedProtectComp extends AbstractComp {
     public boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(api.getRegion(location))
                 .map(region -> region.canBuild(player))
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return Optional.ofNullable(api.getRegion(entity.getLocation()))
+                .map(region -> region.canBuild(player))
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return Optional.ofNullable(api.getRegion(entity.getLocation()))
+                .map(region -> entity instanceof Player e ? region.canPVP(player, e) && e.getWorld().getPVP() : region.canBuild(player)) // FIXME
                 .orElse(true);
     }
 }

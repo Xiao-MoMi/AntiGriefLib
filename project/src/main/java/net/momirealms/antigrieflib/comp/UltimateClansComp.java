@@ -5,6 +5,7 @@ import me.ulrich.clans.interfaces.ClaimImplement;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,6 +37,16 @@ public class UltimateClansComp extends AbstractComp {
     @Override
     public boolean canInteract(Player player, Location location) {
         return checkClaimedMember(player, location);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return checkClaimedMember(player, entity.getLocation());
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return checkClaimedMember(player, entity.getLocation());
     }
 
     private boolean checkClaimedMember(Player player, Location location) {

@@ -7,6 +7,7 @@ import com.massivecraft.factions.zcore.fperms.Access;
 import com.massivecraft.factions.zcore.fperms.PermissableAction;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,6 +40,20 @@ public class SaberFactionsComp extends AbstractComp {
     @Override
     public boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(Board.getInstance().getFactionAt(FLocation.wrap(location)))
+                .map(faction -> faction.getAccess(FPlayers.getInstance().getByPlayer(player), PermissableAction.CONTAINER) == Access.ALLOW)
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canInteractEntity(Player player, Entity entity) {
+        return Optional.ofNullable(Board.getInstance().getFactionAt(FLocation.wrap(entity.getLocation())))
+                .map(faction -> faction.getAccess(FPlayers.getInstance().getByPlayer(player), PermissableAction.CONTAINER) == Access.ALLOW)
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canDamage(Player player, Entity entity) {
+        return Optional.ofNullable(Board.getInstance().getFactionAt(FLocation.wrap(entity.getLocation())))
                 .map(faction -> faction.getAccess(FPlayers.getInstance().getByPlayer(player), PermissableAction.CONTAINER) == Access.ALLOW)
                 .orElse(true);
     }
