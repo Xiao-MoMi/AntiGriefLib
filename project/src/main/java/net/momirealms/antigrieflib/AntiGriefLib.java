@@ -198,7 +198,10 @@ public class AntiGriefLib {
             registerNewCompatibility(new HuskTownsComp(plugin));
         }
         if (manager.getPlugin("PlotSquared") != null) {
-            registerNewCompatibility(new PlotSquaredComp(plugin));
+            switch (manager.getPlugin("PlotSquared").getDescription().getVersion().charAt(0)) {
+                case '5' -> registerNewCompatibility(new PlotSquaredV5Comp(plugin));
+                case '6', '7' -> registerNewCompatibility(new PlotSquaredV6V7Comp(plugin));
+            }
         }
         if (manager.getPlugin("Residence") != null) {
             registerNewCompatibility(new ResidenceComp(plugin));

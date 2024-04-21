@@ -1,5 +1,6 @@
 package net.momirealms.antigrieflib.comp;
 
+import com.plotsquared.bukkit.util.BukkitUtil;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -8,9 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 
-public class PlotSquaredComp extends AbstractComp {
+public class PlotSquaredV5Comp extends AbstractComp {
 
-    public PlotSquaredComp(JavaPlugin plugin) {
+    public PlotSquaredV5Comp(JavaPlugin plugin) {
         super(plugin, "PlotSquared");
     }
 
@@ -44,9 +45,9 @@ public class PlotSquaredComp extends AbstractComp {
     }
 
     private boolean isPlotMember(Player player, Location location) {
-        var psLocation = com.plotsquared.core.location.Location.at(location.getWorld().getName(), location.getBlockX(), location.getBlockY(), location.getBlockZ());
+        var psLocation = BukkitUtil.getLocation(location);
         if (psLocation.isPlotRoad()) return false;
         if (!psLocation.isPlotArea()) return true;
-        return Optional.ofNullable(psLocation.getPlotArea().getPlot(psLocation)).map(plot -> plot.isAdded(player.getUniqueId())).orElse(false);
+        return Optional.ofNullable(psLocation.getPlotArea().getPlot(psLocation)).map(plot -> plot.isAdded(player.getUniqueId()) || plot.isOwner(player.getUniqueId())).orElse(false);
     }
 }
