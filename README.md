@@ -20,7 +20,6 @@ SuperiorSkyBlock \
 Towny \
 UltimateClaims \
 UltimateClans \
-USkyBlock \
 WorldGuard \
 XClaim
 
