@@ -12,6 +12,7 @@ KingdomsX \
 Landlord \
 Lands \
 PlotSquared \
+PreciousStones \
 ProtectionStones \
 RedProtect \
 Residence \
