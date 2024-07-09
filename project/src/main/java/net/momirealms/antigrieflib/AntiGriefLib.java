@@ -236,6 +236,9 @@ public class AntiGriefLib {
         if (manager.getPlugin("UltimateClans") != null) {
             registerNewCompatibility(new UltimateClansComp(plugin));
         }
+        if (manager.getPlugin("PreciousStones") != null) {
+            registerNewCompatibility(new PreciousStonesComp(plugin));
+        }
         if (manager.getPlugin("Factions") != null) {
             try {
                 Class.forName("com.massivecraft.factions.zcore.fperms.PermissableAction");
