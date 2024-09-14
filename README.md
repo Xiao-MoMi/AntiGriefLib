@@ -5,6 +5,7 @@ FabledSkyBlock \
 FactionsUUID \
 GriefDefender \
 GriefPrevention \
+hClaims\
 HuskClaims \
 HuskTowns \
 IridiumSkyBlock \
