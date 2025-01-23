@@ -1,6 +1,6 @@
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/repository/maven-public/")                 // Paper
+    maven("https://repo.papermc.io/repository/maven-public/")                 // Paper
     maven("https://jitpack.io/")                                              // SaberFactions
     maven("https://repo.codemc.org/repository/maven-public/")                 // NBTAPI
 }

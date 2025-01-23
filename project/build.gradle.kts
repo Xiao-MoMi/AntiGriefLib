@@ -1,6 +1,6 @@
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/repository/maven-public/")                 // Paper, PlotSquared
+    maven("https://repo.papermc.io/repository/maven-public/")                 // Paper, PlotSquared
     maven("https://maven.enginehub.org/repo/")                                // WorldGuard
     maven("https://jitpack.io/")                                              // Lands, GriefPrevention
     maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")  // IridiumSkyBlock
