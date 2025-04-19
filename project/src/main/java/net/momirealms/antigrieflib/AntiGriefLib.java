@@ -137,7 +137,11 @@ public class AntiGriefLib {
 
         public Builder(JavaPlugin plugin) {
             this.lib = new AntiGriefLib(plugin);
-            this.lib.detectSupportedPlugins();
+            try {
+                this.lib.detectSupportedPlugins();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         public Builder ignoreOP(boolean ignoreOP) {
@@ -177,7 +181,9 @@ public class AntiGriefLib {
             registerNewCompatibility(new LandsComp(plugin));
         }
         if (manager.getPlugin("IridiumSkyblock") != null) {
-            registerNewCompatibility(new IridiumSkyblockComp(plugin));
+            if (manager.getPlugin("IridiumSkyblock").getDescription().getVersion().startsWith("4.0")) {
+                registerNewCompatibility(new IridiumSkyblockComp(plugin));
+            }
         }
         if (manager.getPlugin("CrashClaim") != null) {
             registerNewCompatibility(new CrashClaimComp(plugin));

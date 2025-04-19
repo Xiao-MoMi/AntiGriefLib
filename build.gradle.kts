@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("maven-publish")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.0.0-beta11"
 }
 
 val projectVersion : String by project
@@ -11,7 +11,7 @@ allprojects {
 
     apply(plugin = "java")
     apply(plugin = "maven-publish")
-    apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "com.gradleup.shadow")
 
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
@@ -27,12 +27,21 @@ allprojects {
         }
 
         publishing {
+            repositories {
+                maven {
+                    url = uri("https://repo.momirealms.net/releases")
+                    credentials(PasswordCredentials::class) {
+                        username = System.getenv("REPO_USERNAME")
+                        password = System.getenv("REPO_PASSWORD")
+                    }
+                }
+            }
             publications {
                 create<MavenPublication>("mavenJava") {
                     groupId = "net.momirealms"
-                    artifactId = "AntiGriefLib"
-                    version = rootProject.version.toString()
-                    artifact(tasks.shadowJar)
+                    artifactId = "antigrieflib"
+                    version = projectVersion
+                    from(components["shadow"])
                 }
             }
         }

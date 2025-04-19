@@ -33,13 +33,13 @@ dependencies {
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2023.3")                      // SuperiorSkyBlock2 - API
     compileOnly("com.palmergames.bukkit.towny:towny:0.100.1.17")                  // Towny
     compileOnly("com.craftaro:FabledSkyBlock:3.0.4")                              // FabledSkyBlock
-    compileOnly("com.craftaro:UltimateClaims:2.2.0")                              // FabledSkyBlock
+    compileOnly("com.craftaro:UltimateClaims:2.2.0")                              // UltimateClaims
     compileOnly("com.github.TechFortress:GriefPrevention:16.18.2")                // GriefPrevention
     compileOnly("com.massivecraft:Factions:1.6.9.5-U0.6.33")                      // FactionsUUID
     compileOnly("dev.espi:protectionstones:2.10.2")                               // ProtectionStones
     compileOnly("biz.princeps:landlord-core:4.364")                               // Landlord
 //    compileOnly("ovh.uskyblock:uSkyBlock-Core:3.0.0")                             // uSkyBlock (Removed because its repo is down)
-    compileOnly("com.github.UlrichBR:UClansV7-API:7.4.0-r1")                      // UltimateClans
+    compileOnly("com.github.UlrichBR:UClans-API:8.8.0-R1")                      // UltimateClans
 
     compileOnly(files("libs/Residence-pruned.jar"))                        // Residence
     compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX
