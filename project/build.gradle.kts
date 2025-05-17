@@ -38,8 +38,8 @@ dependencies {
     compileOnly("com.massivecraft:Factions:1.6.9.5-U0.6.33")                      // FactionsUUID
     compileOnly("dev.espi:protectionstones:2.10.2")                               // ProtectionStones
     compileOnly("biz.princeps:landlord-core:4.364")                               // Landlord
-//    compileOnly("ovh.uskyblock:uSkyBlock-Core:3.0.0")                             // uSkyBlock (Removed because its repo is down)
-    compileOnly("com.github.UlrichBR:UClans-API:8.8.0-R1")                      // UltimateClans
+    compileOnly("com.github.UlrichBR:UClans-API:8.8.0-R1")                        // UltimateClans
+    compileOnly("cn.lunadeer:DominionAPI:4.3")                                    // UltimateClans
 
     compileOnly(files("libs/Residence-pruned.jar"))                        // Residence
     compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX

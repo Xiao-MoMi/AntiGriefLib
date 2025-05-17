@@ -140,7 +140,7 @@ public class AntiGriefLib {
             try {
                 this.lib.detectSupportedPlugins();
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new CompatibilityException("AntiGriefLib failed to init", e);
             }
         }
 
@@ -247,6 +247,9 @@ public class AntiGriefLib {
         }
         if (manager.getPlugin("hClaims") != null) {
             registerNewCompatibility(new HClaimsComp(plugin));
+        }
+        if (manager.getPlugin("Dominion") != null) {
+            registerNewCompatibility(new DominionComp(plugin));
         }
         if (manager.getPlugin("Factions") != null) {
             try {

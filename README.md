@@ -1,6 +1,7 @@
 ### Supported Plugins
 BentoBox \
 CrashClaim \
+Dominion \
 FabledSkyBlock \
 FactionsUUID \
 GriefDefender \
@@ -26,18 +27,15 @@ WorldGuard \
 XClaim
 
 ### Use this project as dependency
-![GitHub](https://img.shields.io/github/license/Xiao-MoMi/AntiGriefLib)
-[![](https://jitpack.io/v/Xiao-MoMi/AntiGriefLib.svg)](https://jitpack.io/#Xiao-MoMi/AntiGriefLib)
-[![CodeFactor](https://www.codefactor.io/repository/github/xiao-momi/antigrieflib/badge)](https://www.codefactor.io/repository/github/xiao-momi/antigrieflib) \
 Gradle (kts)
 ```kotlin
 repositories {
-    maven("https://jitpack.io/")
+    maven("https://repo.momirealms.net/releases/")
 }
 ```
 ```kotlin
 dependencies {
-    compileOnly("com.github.Xiao-MoMi:AntiGriefLib:{LATEST}")
+    implementation("net.momirealms:antigrieflib:0.16")
 }
 ```
 

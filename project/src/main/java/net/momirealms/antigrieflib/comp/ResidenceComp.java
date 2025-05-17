@@ -25,28 +25,49 @@ public class ResidenceComp extends AbstractComp {
     @Override
     public boolean canPlace(Player player, Location location) {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
-                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.place, true))
+                .map(claimedResidence -> {
+                    boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
+                    boolean canPlace = claimedResidence.getPermissions().playerHas(player, Flags.place, true);
+                    if (canBuild && !canPlace) {
+                        return false;
+                    }
+                    return canBuild || canPlace;
+                })
                 .orElse(true);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
-                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.destroy, true))
+                .map(claimedResidence -> {
+                    boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
+                    boolean canDestroy = claimedResidence.getPermissions().playerHas(player, Flags.destroy, true);
+                    if (canBuild && !canDestroy) {
+                        return false;
+                    }
+                    return canBuild || canDestroy;
+                })
                 .orElse(true);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
-                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.use, true))
+                .map(claimedResidence -> {
+                    boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
+                    boolean canUse = claimedResidence.getPermissions().playerHas(player, Flags.use, true);
+                    if (canBuild && !canUse) {
+                        return false;
+                    }
+                    return canBuild || canUse;
+                })
                 .orElse(true);
     }
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(entity.getLocation()))
-                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.build, true))
+                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.build, false))
                 .orElse(true);
     }
 
@@ -60,11 +81,11 @@ public class ResidenceComp extends AbstractComp {
                         return src && target;
                     }
                     if (Utils.isAnimal(entity)) {
-                        return claimedResidence.getPermissions().playerHas(player, Flags.animalkilling, true);
+                        return claimedResidence.getPermissions().playerHas(player, Flags.animalkilling, false);
                     } else if (ResidenceEntityListener.isMonster(entity)) {
-                        return claimedResidence.getPermissions().playerHas(player, Flags.mobkilling, true);
+                        return claimedResidence.getPermissions().playerHas(player, Flags.mobkilling, false);
                     } else {
-                        return claimedResidence.getPermissions().playerHas(player, Flags.damage, true);
+                        return claimedResidence.getPermissions().playerHas(player, Flags.damage, false);
                     }
                 })
                 .orElse(true);
