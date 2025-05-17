@@ -27,7 +27,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canPlace = claimedResidence.getPermissions().playerHas(player, Flags.place, true);
+                    boolean canPlace = claimedResidence.getPermissions().playerHas(player, Flags.place, false);
                     if (canBuild && !canPlace) {
                         return false;
                     }
@@ -41,7 +41,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canDestroy = claimedResidence.getPermissions().playerHas(player, Flags.destroy, true);
+                    boolean canDestroy = claimedResidence.getPermissions().playerHas(player, Flags.destroy, false);
                     if (canBuild && !canDestroy) {
                         return false;
                     }
@@ -55,7 +55,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canUse = claimedResidence.getPermissions().playerHas(player, Flags.use, true);
+                    boolean canUse = claimedResidence.getPermissions().playerHas(player, Flags.use, false);
                     if (canBuild && !canUse) {
                         return false;
                     }
