@@ -197,9 +197,6 @@ public class AntiGriefLib {
         if (manager.getPlugin("BentoBox") != null) {
             registerNewCompatibility(new BentoBoxComp(plugin));
         }
-        if (manager.getPlugin("HuskClaims") != null) {
-            registerNewCompatibility(new HuskClaimsComp(plugin));
-        }
         if (manager.getPlugin("HuskTowns") != null) {
             registerNewCompatibility(new HuskTownsComp(plugin));
         }
