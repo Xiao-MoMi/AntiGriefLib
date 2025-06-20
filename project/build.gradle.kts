@@ -48,7 +48,8 @@ dependencies {
     compileOnly(files("libs/SuperiorSkyblock2-2023.3.jar"))                // SuperiorSkyBlock2 - Plugin
     compileOnly(files("libs/uSkyBlock-3.0.0.jar"))                         // uSkyBlock
     compileOnly(files("libs/PreciousStones-1.17.1.2.jar"))                 // PreciousStones
-    compileOnly(files("libs/hClaims-pruned.jar"))                      // hClaims
+    compileOnly(files("libs/hClaims-pruned.jar"))                          // hClaims
+    compileOnly(files("libs/NoBuildPlus-1.5.7.jar"))                       // NoBuildPlus
 
     compileOnly("io.github.fabiozumbi12.RedProtect:RedProtect-Core:8.1.1") { exclude(group = "*") }        // RedProtect
     compileOnly("io.github.fabiozumbi12.RedProtect:RedProtect-Spigot:8.1.1") { exclude(group = "*") }      // RedProtect

@@ -260,6 +260,9 @@ public class AntiGriefLib {
             } catch (ClassNotFoundException ignore) {
             }
         }
+        if (manager.getPlugin("NoBuildPlus") != null) {
+            registerNewCompatibility(new NoBuildPlusComp(plugin));
+        }
     }
 
     private void logHook(String pluginName) {
