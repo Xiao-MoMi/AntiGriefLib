@@ -27,7 +27,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canPlace = claimedResidence.getPermissions().playerHas(player, Flags.place, false);
+                    boolean canPlace = claimedResidence.getPermissions().playerHas(player, Flags.place, canBuild);
                     if (canBuild && !canPlace) {
                         return false;
                     }
@@ -41,7 +41,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canDestroy = claimedResidence.getPermissions().playerHas(player, Flags.destroy, false);
+                    boolean canDestroy = claimedResidence.getPermissions().playerHas(player, Flags.destroy, canBuild);
                     if (canBuild && !canDestroy) {
                         return false;
                     }
@@ -55,7 +55,7 @@ public class ResidenceComp extends AbstractComp {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> {
                     boolean canBuild = claimedResidence.getPermissions().playerHas(player, Flags.build, false);
-                    boolean canUse = claimedResidence.getPermissions().playerHas(player, Flags.use, false);
+                    boolean canUse = claimedResidence.getPermissions().playerHas(player, Flags.use, canBuild);
                     if (canBuild && !canUse) {
                         return false;
                     }
