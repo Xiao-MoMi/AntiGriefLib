@@ -6,7 +6,7 @@ public final class ReflectionUtils {
 
     public static boolean classExists(@NotNull final String clazz) {
         try {
-            Class.forName(clazz);
+            Class.forName(clazz.replace("{}", "."));
             return true;
         } catch (Throwable e) {
             return false;
