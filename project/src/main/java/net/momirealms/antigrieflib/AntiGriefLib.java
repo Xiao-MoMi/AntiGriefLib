@@ -166,9 +166,11 @@ public class AntiGriefLib {
     }
 
     public void registerNewCompatibility(AntiGriefPlugin antiGriefPlugin) {
+        if (!antiGriefPlugin.checkClazz()) return;
         this.plugins.add(antiGriefPlugin);
     }
 
+    @SuppressWarnings("deprecation")
     private void detectSupportedPlugins() {
         PluginManager manager = Bukkit.getPluginManager();
         if (manager.getPlugin("WorldGuard") != null) {

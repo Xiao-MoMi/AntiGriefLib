@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import me.ulrich.clans.Clans;
 import me.ulrich.clans.interfaces.ClaimImplement;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -17,6 +18,11 @@ public class UltimateClansComp extends AbstractComp {
 
     public UltimateClansComp(JavaPlugin plugin) {
         super(plugin, "UltimateClans");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("me.ulrich.clans.Clans");
     }
 
     @Override

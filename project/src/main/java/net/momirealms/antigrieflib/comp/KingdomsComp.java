@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,11 @@ public class KingdomsComp extends AbstractComp {
 
     public KingdomsComp(JavaPlugin plugin) {
         super(plugin, "Kingdoms");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("org.kingdoms.constants.land.Land");
     }
 
     @Override

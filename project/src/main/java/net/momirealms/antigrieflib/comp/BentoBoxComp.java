@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -13,6 +14,11 @@ public class BentoBoxComp extends AbstractComp {
 
     public BentoBoxComp(JavaPlugin plugin) {
         super(plugin, "BentoBox");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("world.bentobox.bentobox.BentoBox");
     }
 
     @Override

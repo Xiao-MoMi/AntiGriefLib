@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import com.craftaro.skyblock.api.SkyBlockAPI;
 import com.craftaro.skyblock.api.island.IslandRole;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,11 @@ public class FabledSkyBlockComp extends AbstractComp {
 
     public FabledSkyBlockComp(JavaPlugin plugin) {
         super(plugin, "FabledSkyBlock");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.craftaro.skyblock.api.SkyBlockAPI");
     }
 
     @Override

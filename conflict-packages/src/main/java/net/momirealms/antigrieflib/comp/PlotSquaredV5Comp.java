@@ -2,6 +2,7 @@ package net.momirealms.antigrieflib.comp;
 
 import com.plotsquared.bukkit.util.BukkitUtil;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -13,6 +14,11 @@ public class PlotSquaredV5Comp extends AbstractComp {
 
     public PlotSquaredV5Comp(JavaPlugin plugin) {
         super(plugin, "PlotSquared");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.plotsquared.bukkit.util.BukkitUtil");
     }
 
     @Override

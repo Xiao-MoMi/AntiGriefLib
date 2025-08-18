@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import com.iridium.iridiumskyblock.api.IridiumSkyblockAPI;
 import com.iridium.iridiumteams.PermissionType;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,11 @@ public class IridiumSkyblockComp extends AbstractComp {
 
     public IridiumSkyblockComp(JavaPlugin plugin) {
         super(plugin, "IridiumSkyblock");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.iridium.iridiumskyblock.api.IridiumSkyblockAPI");
     }
 
     @Override

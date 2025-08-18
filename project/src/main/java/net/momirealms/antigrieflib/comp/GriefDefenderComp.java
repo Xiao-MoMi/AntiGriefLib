@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import com.griefdefender.api.GriefDefender;
 import com.griefdefender.api.claim.TrustTypes;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,11 @@ public class GriefDefenderComp extends AbstractComp {
 
     public GriefDefenderComp(JavaPlugin plugin) {
         super(plugin, "GriefDefender");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.griefdefender.api.GriefDefender");
     }
 
     @Override

@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import br.net.fabiozumbi12.RedProtect.Bukkit.API.RedProtectAPI;
 import br.net.fabiozumbi12.RedProtect.Bukkit.RedProtect;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -16,6 +17,11 @@ public class RedProtectComp extends AbstractComp {
 
     public RedProtectComp(JavaPlugin plugin) {
         super(plugin, "RedProtect");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("br.net.fabiozumbi12.RedProtect.Bukkit.API.RedProtectAPI");
     }
 
     @Override

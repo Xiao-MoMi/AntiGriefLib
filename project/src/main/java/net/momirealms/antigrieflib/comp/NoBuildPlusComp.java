@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,6 +15,11 @@ public class NoBuildPlusComp extends AbstractComp {
 
     public NoBuildPlusComp(JavaPlugin plugin) {
         super(plugin, "NoBuildPlus");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("p1xel.nobuildplus.NoBuildPlus");
     }
 
     @Override

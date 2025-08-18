@@ -8,6 +8,7 @@ import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -22,6 +23,11 @@ public class WorldGuardComp extends AbstractComp {
 
     public WorldGuardComp(JavaPlugin plugin) {
         super(plugin, "WorldGuard");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.sk89q.worldguard.WorldGuard");
     }
 
     @Override

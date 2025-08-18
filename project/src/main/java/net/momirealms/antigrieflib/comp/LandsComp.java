@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.flags.type.Flags;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Enemy;
 import org.bukkit.entity.Entity;
@@ -17,6 +18,11 @@ public class LandsComp extends AbstractComp {
 
     public LandsComp(JavaPlugin plugin) {
         super(plugin, "Lands");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("me.angeschossen.lands.api.LandsIntegration");
     }
 
     @Override

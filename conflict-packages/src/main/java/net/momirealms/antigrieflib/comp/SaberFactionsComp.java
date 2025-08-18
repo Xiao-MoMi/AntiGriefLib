@@ -6,6 +6,7 @@ import com.massivecraft.factions.FPlayers;
 import com.massivecraft.factions.zcore.fperms.Access;
 import com.massivecraft.factions.zcore.fperms.PermissableAction;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,6 +18,11 @@ public class SaberFactionsComp extends AbstractComp {
 
     public SaberFactionsComp(JavaPlugin plugin) {
         super(plugin, "SaberFactions");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.massivecraft.factions.Board");
     }
 
     @Override

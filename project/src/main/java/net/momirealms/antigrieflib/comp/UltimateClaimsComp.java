@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import com.craftaro.ultimateclaims.UltimateClaims;
 import com.craftaro.ultimateclaims.member.ClaimPerm;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -17,6 +18,11 @@ public class UltimateClaimsComp extends AbstractComp {
 
     public UltimateClaimsComp(JavaPlugin plugin) {
         super(plugin, "UltimateClaims");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.craftaro.ultimateclaims.UltimateClaims");
     }
 
     @Override

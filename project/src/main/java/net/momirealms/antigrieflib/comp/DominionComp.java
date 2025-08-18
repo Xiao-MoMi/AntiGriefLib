@@ -5,6 +5,7 @@ import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.flag.Flags;
 import net.momirealms.antigrieflib.AbstractComp;
 import net.momirealms.antigrieflib.CompatibilityException;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,11 @@ public class DominionComp extends AbstractComp {
 
     public DominionComp(JavaPlugin plugin) {
         super(plugin, "Dominion");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("cn.lunadeer.dominion.api.DominionAPI");
     }
 
     @Override

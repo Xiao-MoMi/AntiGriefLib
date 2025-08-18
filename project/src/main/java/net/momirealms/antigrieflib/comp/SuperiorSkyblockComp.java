@@ -6,6 +6,7 @@ import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.world.BukkitEntities;
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,6 +18,11 @@ public class SuperiorSkyblockComp extends AbstractComp {
 
     public SuperiorSkyblockComp(JavaPlugin plugin) {
         super(plugin, "SuperiorSkyblock2");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin");
     }
 
     @Override

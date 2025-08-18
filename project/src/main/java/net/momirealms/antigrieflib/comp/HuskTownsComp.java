@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
+import net.momirealms.antigrieflib.util.ReflectionUtils;
 import net.william278.husktowns.api.BukkitHuskTownsAPI;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -13,6 +14,11 @@ public class HuskTownsComp extends AbstractComp {
 
     public HuskTownsComp(JavaPlugin plugin) {
         super(plugin, "HuskTowns");
+    }
+
+    @Override
+    public boolean checkClazz() {
+        return ReflectionUtils.classExists("net.william278.husktowns.api.BukkitHuskTownsAPI");
     }
 
     @Override
