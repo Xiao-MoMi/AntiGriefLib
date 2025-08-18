@@ -4,7 +4,6 @@ import codes.wasabi.xclaim.api.Claim;
 import codes.wasabi.xclaim.api.enums.EntityGroup;
 import codes.wasabi.xclaim.api.enums.Permission;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -18,11 +17,6 @@ public class XClaimComp extends AbstractComp {
 
     public XClaimComp(JavaPlugin plugin) {
         super(plugin, "XClaim");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("codes.wasabi.xclaim.api.Claim");
     }
 
     @Override

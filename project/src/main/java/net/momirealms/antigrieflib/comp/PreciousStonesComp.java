@@ -1,7 +1,6 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import net.sacredlabyrinth.Phaed.PreciousStones.api.Api;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -14,11 +13,6 @@ public class PreciousStonesComp extends AbstractComp {
 
     public PreciousStonesComp(JavaPlugin plugin) {
         super(plugin, "PreciousStones");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("net.sacredlabyrinth.Phaed.PreciousStones.api.Api");
     }
 
     @Override

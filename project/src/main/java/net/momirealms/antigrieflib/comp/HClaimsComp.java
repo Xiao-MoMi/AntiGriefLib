@@ -5,7 +5,6 @@ import com.hakan.claim.model.member.ClaimMemberPermission;
 import com.hakan.claim.service.ClaimService;
 import com.hakan.claim.shadow.com.hakan.spinjection.SpigotBootstrap;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,11 +16,6 @@ public class HClaimsComp extends AbstractComp {
 
     public HClaimsComp(JavaPlugin plugin) {
         super(plugin, "hClaims");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("com.hakan.claim.service.ClaimService");
     }
 
     @Override

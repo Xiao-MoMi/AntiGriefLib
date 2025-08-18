@@ -6,8 +6,6 @@ import org.bukkit.entity.Player;
 
 public interface AntiGriefPlugin {
 
-    boolean checkClazz();
-
     void init();
 
     boolean canPlace(Player player, Location location);

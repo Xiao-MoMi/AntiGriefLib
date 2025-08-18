@@ -5,7 +5,6 @@ import com.bekvon.bukkit.residence.listeners.ResidenceEntityListener;
 import com.bekvon.bukkit.residence.protection.FlagPermissions;
 import com.bekvon.bukkit.residence.utils.Utils;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,11 +16,6 @@ public class ResidenceComp extends AbstractComp {
 
     public ResidenceComp(JavaPlugin plugin) {
         super(plugin, "Residence");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("com.bekvon.bukkit.residence.Residence");
     }
 
     @Override

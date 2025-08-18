@@ -1,7 +1,6 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import net.william278.huskclaims.api.BukkitHuskClaimsAPI;
 import net.william278.huskclaims.libraries.cloplib.operation.OperationType;
 import org.bukkit.Location;
@@ -15,11 +14,6 @@ public class HuskClaimsComp extends AbstractComp {
 
     public HuskClaimsComp(JavaPlugin plugin) {
         super(plugin, "HuskClaims");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("net.william278.huskclaims.api.BukkitHuskClaimsAPI");
     }
 
     @Override

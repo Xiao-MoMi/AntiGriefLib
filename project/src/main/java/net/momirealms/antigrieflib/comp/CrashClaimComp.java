@@ -4,7 +4,6 @@ import net.crashcraft.crashclaim.CrashClaim;
 import net.crashcraft.crashclaim.api.CrashClaimAPI;
 import net.crashcraft.crashclaim.permissions.PermissionRoute;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,11 +16,6 @@ public class CrashClaimComp extends AbstractComp {
     }
 
     private CrashClaimAPI api;
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("net.crashcraft.crashclaim.CrashClaim");
-    }
 
     @Override
     public void init() {

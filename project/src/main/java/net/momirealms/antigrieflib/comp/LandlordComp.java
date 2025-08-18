@@ -2,7 +2,6 @@ package net.momirealms.antigrieflib.comp;
 
 import biz.princeps.landlord.api.ILandLord;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -17,11 +16,6 @@ public class LandlordComp extends AbstractComp {
 
     public LandlordComp(JavaPlugin plugin) {
         super(plugin, "Landlord");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("biz.princeps.landlord.api.ILandLord");
     }
 
     @Override

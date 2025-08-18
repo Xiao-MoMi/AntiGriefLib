@@ -1,7 +1,6 @@
 package net.momirealms.antigrieflib.comp;
 
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -17,11 +16,6 @@ public class USkyBlockComp extends AbstractComp {
 
     public USkyBlockComp(JavaPlugin plugin) {
         super(plugin, "uSkyBlock");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("us.talabrek.ultimateskyblock.api.uSkyBlockAPI");
     }
 
     @Override

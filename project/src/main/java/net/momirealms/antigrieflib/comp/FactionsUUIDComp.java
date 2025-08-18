@@ -5,7 +5,6 @@ import com.massivecraft.factions.listeners.FactionsBlockListener;
 import com.massivecraft.factions.listeners.FactionsEntityListener;
 import com.massivecraft.factions.perms.PermissibleActions;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -17,11 +16,6 @@ public class FactionsUUIDComp extends AbstractComp {
 
     public FactionsUUIDComp(JavaPlugin plugin) {
         super(plugin, "FactionsUUID");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("com.massivecraft.factions.FactionsPlugin");
     }
 
     @Override

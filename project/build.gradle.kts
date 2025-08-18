@@ -28,7 +28,7 @@ dependencies {
     compileOnly("world.bentobox:bentobox:2.1.0-SNAPSHOT")                         // BentoBox
     compileOnly("com.griefdefender:api:2.1.0-SNAPSHOT")                           // GriefDefender
     compileOnly("net.william278.husktowns:husktowns-bukkit:3.0.2")                // HuskTowns
-    compileOnly("net.william278.huskclaims:huskclaims-bukkit:1.5")                // HuskClaims
+    compileOnly("net.william278.huskclaims:huskclaims-bukkit:1.0.3")              // HuskClaims
     compileOnly("com.intellectualsites.plotsquared:plotsquared-bukkit:7.3.5")     // PlotSquared
     compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2023.3")                      // SuperiorSkyBlock2 - API
     compileOnly("com.palmergames.bukkit.towny:towny:0.100.1.17")                  // Towny

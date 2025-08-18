@@ -5,7 +5,6 @@ import me.ryanhamshire.GriefPrevention.ClaimPermission;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.PlayerData;
 import net.momirealms.antigrieflib.AbstractComp;
-import net.momirealms.antigrieflib.util.ReflectionUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -15,11 +14,6 @@ public class GriefPreventionComp extends AbstractComp {
 
     public GriefPreventionComp(JavaPlugin plugin) {
         super(plugin, "GriefPrevention");
-    }
-
-    @Override
-    public boolean checkClazz() {
-        return ReflectionUtils.classExists("me.ryanhamshire.GriefPrevention.GriefPrevention");
     }
 
     @Override
