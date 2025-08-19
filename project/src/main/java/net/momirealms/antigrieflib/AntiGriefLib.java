@@ -174,54 +174,54 @@ public class AntiGriefLib {
     private void detectSupportedPlugins() {
         PluginManager manager = Bukkit.getPluginManager();
         if (manager.getPlugin("WorldGuard") != null) {
-            if (ReflectionUtils.classExists("com.sk89q.worldguard.WorldGuard")) {
+            if (ReflectionUtils.classExists("com{}sk89q{}worldguard{}WorldGuard")) {
                 registerNewCompatibility(new WorldGuardComp(plugin));
             }
         }
         if (manager.getPlugin("Kingdoms") != null) {
-            if (ReflectionUtils.classExists("org.kingdoms.constants.land.Land")) {
+            if (ReflectionUtils.classExists("org{}kingdoms{}constants{}land{}Land")) {
                 registerNewCompatibility(new KingdomsComp(plugin));
             }
         }
         if (manager.getPlugin("Lands") != null) {
-            if (ReflectionUtils.classExists("me.angeschossen.lands.api.LandsIntegration")) {
+            if (ReflectionUtils.classExists("me{}angeschossen{}lands{}api{}LandsIntegration")) {
                 registerNewCompatibility(new LandsComp(plugin));
             }
         }
         if (manager.getPlugin("IridiumSkyblock") != null) {
-            if (ReflectionUtils.classExists("com.iridium.iridiumskyblock.api.IridiumSkyblockAPI")) {
+            if (ReflectionUtils.classExists("com{}iridium{}iridiumskyblock{}api{}IridiumSkyblockAPI")) {
                 if (manager.getPlugin("IridiumSkyblock").getDescription().getVersion().startsWith("4.0")) {
                     registerNewCompatibility(new IridiumSkyblockComp(plugin));
                 }
             }
         }
         if (manager.getPlugin("CrashClaim") != null) {
-            if (ReflectionUtils.classExists("net.crashcraft.crashclaim.CrashClaim")) {
+            if (ReflectionUtils.classExists("net{}crashcraft{}crashclaim{}CrashClaim")) {
                 registerNewCompatibility(new CrashClaimComp(plugin));
             }
         }
         if (manager.getPlugin("GriefDefender") != null) {
-            if (ReflectionUtils.classExists("com.griefdefender.api.GriefDefender")) {
+            if (ReflectionUtils.classExists("com{}griefdefender{}api{}GriefDefender")) {
                 registerNewCompatibility(new GriefDefenderComp(plugin));
             }
         }
         if (manager.getPlugin("HuskClaims") != null) {
-            if (ReflectionUtils.classExists("net.william278.huskclaims.api.BukkitHuskClaimsAPI")) {
+            if (ReflectionUtils.classExists("net{}william278{}huskclaims{}api{}BukkitHuskClaimsAPI")) {
                 registerNewCompatibility(new HuskClaimsComp(plugin));
             }
         }
         if (manager.getPlugin("BentoBox") != null) {
-            if (ReflectionUtils.classExists("world.bentobox.bentobox.BentoBox")) {
+            if (ReflectionUtils.classExists("world{}bentobox{}bentobox{}BentoBox")) {
                 registerNewCompatibility(new BentoBoxComp(plugin));
             }
         }
         if (manager.getPlugin("HuskTowns") != null) {
-            if (ReflectionUtils.classExists("net.william278.husktowns.api.BukkitHuskTownsAPI")) {
+            if (ReflectionUtils.classExists("net{}william278{}husktowns{}api{}BukkitHuskTownsAPI")) {
                 registerNewCompatibility(new HuskTownsComp(plugin));
             }
         }
         if (manager.getPlugin("PlotSquared") != null) {
-            if (ReflectionUtils.classExists("com.plotsquared.bukkit.util.BukkitUtil")) {
+            if (ReflectionUtils.classExists("com{}plotsquared{}bukkit{}util{}BukkitUtil")) {
                 switch (manager.getPlugin("PlotSquared").getDescription().getVersion().charAt(0)) {
                     case '5' -> registerNewCompatibility(new PlotSquaredV5Comp(plugin));
                     case '6', '7' -> registerNewCompatibility(new PlotSquaredV6V7Comp(plugin));
@@ -229,85 +229,85 @@ public class AntiGriefLib {
             }
         }
         if (manager.getPlugin("Residence") != null) {
-            if (ReflectionUtils.classExists("com.bekvon.bukkit.residence.Residence")) {
+            if (ReflectionUtils.classExists("com{}bekvon{}bukkit{}residence{}Residence")) {
                 registerNewCompatibility(new ResidenceComp(plugin));
             }
         }
         if (manager.getPlugin("SuperiorSkyblock2") != null) {
-            if (ReflectionUtils.classExists("com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin")) {
+            if (ReflectionUtils.classExists("com{}bgsoftware{}superiorskyblock{}SuperiorSkyblockPlugin")) {
                 registerNewCompatibility(new SuperiorSkyblockComp(plugin));
             }
         }
         if (manager.getPlugin("Towny") != null) {
-            if (ReflectionUtils.classExists("com.palmergames.bukkit.towny.TownyAPI")) {
+            if (ReflectionUtils.classExists("com{}palmergames{}bukkit{}towny{}TownyAPI")) {
                 registerNewCompatibility(new TownyComp(plugin));
             }
         }
         if (manager.getPlugin("FabledSkyBlock") != null) {
-            if (ReflectionUtils.classExists("com.craftaro.skyblock.api.SkyBlockAPI")) {
+            if (ReflectionUtils.classExists("com{}craftaro{}skyblock{}api{}SkyBlockAPI")) {
                 registerNewCompatibility(new FabledSkyBlockComp(plugin));
             }
         }
         if (manager.getPlugin("GriefPrevention") != null) {
-            if (ReflectionUtils.classExists("me.ryanhamshire.GriefPrevention.Claim")) {
+            if (ReflectionUtils.classExists("me{}ryanhamshire{}GriefPrevention{}Claim")) {
                 registerNewCompatibility(new GriefPreventionComp(plugin));
             }
         }
         if (manager.getPlugin("RedProtect") != null) {
-            if (ReflectionUtils.classExists("br.net.fabiozumbi12.RedProtect.Bukkit.API.RedProtectAPI")) {
+            if (ReflectionUtils.classExists("br{}net{}fabiozumbi12{}RedProtect{}Bukkit{}API{}RedProtectAPI")) {
                 registerNewCompatibility(new RedProtectComp(plugin));
             }
         }
         if (manager.getPlugin("Landlord") != null) {
-            if (ReflectionUtils.classExists("biz.princeps.landlord.api.ILandLord")) {
+            if (ReflectionUtils.classExists("biz{}princeps{}landlord{}api{}ILandLord")) {
                 registerNewCompatibility(new LandlordComp(plugin));
             }
         }
         if (manager.getPlugin("uSkyBlock") != null) {
-            if (ReflectionUtils.classExists("us.talabrek.ultimateskyblock.api.uSkyBlockAPI")) {
+            if (ReflectionUtils.classExists("us{}talabrek{}ultimateskyblock{}api{}uSkyBlockAPI")) {
                 registerNewCompatibility(new USkyBlockComp(plugin));
             }
         }
         if (manager.getPlugin("XClaim") != null) {
-            if (ReflectionUtils.classExists("codes.wasabi.xclaim.api.Claim")) {
+            if (ReflectionUtils.classExists("codes{}wasabi{}xclaim{}api{}Claim")) {
                 registerNewCompatibility(new XClaimComp(plugin));
             }
         }
         if (manager.getPlugin("UltimateClaims") != null) {
-            if (ReflectionUtils.classExists("com.craftaro.ultimateclaims.UltimateClaims")) {
+            if (ReflectionUtils.classExists("com{}craftaro{}ultimateclaims{}UltimateClaims")) {
                 registerNewCompatibility(new UltimateClaimsComp(plugin));
             }
         }
         if (manager.getPlugin("UltimateClans") != null) {
-            if (ReflectionUtils.classExists("me.ulrich.clans.Clans")) {
+            if (ReflectionUtils.classExists("me{}ulrich{}clans{}Clans")) {
                 registerNewCompatibility(new UltimateClansComp(plugin));
             }
         }
         if (manager.getPlugin("PreciousStones") != null) {
-            if (ReflectionUtils.classExists("net.sacredlabyrinth.Phaed.PreciousStones.api.Api")) {
+            if (ReflectionUtils.classExists("net{}sacredlabyrinth{}Phaed{}PreciousStones{}api{}Api")) {
                 registerNewCompatibility(new PreciousStonesComp(plugin));
             }
         }
         if (manager.getPlugin("hClaims") != null) {
-            if (ReflectionUtils.classExists("com.hakan.claim.shadow.com.hakan.spinjection.SpigotBootstrap")) {
+            if (ReflectionUtils.classExists("com{}hakan{}claim{}shadow{}com{}hakan{}spinjection{}SpigotBootstrap")) {
                 registerNewCompatibility(new HClaimsComp(plugin));
             }
         }
         if (manager.getPlugin("Dominion") != null) {
-            if (ReflectionUtils.classExists("cn.lunadeer.dominion.api.DominionAPI")) {
+            if (ReflectionUtils.classExists("cn{}lunadeer{}dominion{}api{}DominionAPI")) {
                 registerNewCompatibility(new DominionComp(plugin));
             }
         }
         if (manager.getPlugin("Factions") != null) {
-            if (ReflectionUtils.classExists("com.massivecraft.factions.zcore.fperms.PermissableAction")) {
+            if (ReflectionUtils.classExists("com{}massivecraft{}factions{}zcore{}fperms{}PermissableAction")) {
                 registerNewCompatibility(new SaberFactionsComp(plugin));
             }
-            if (ReflectionUtils.classExists("com.massivecraft.factions.perms.PermissibleActions")) {
+            if (ReflectionUtils.classExists("com{}massivecraft{}factions{}perms{}PermissibleActions")) {
                 registerNewCompatibility(new FactionsUUIDComp(plugin));
             }
         }
         if (manager.getPlugin("NoBuildPlus") != null) {
-            if (ReflectionUtils.classExists("p1xel.nobuildplus.NoBuildPlus")) {
+            if (ReflectionUtils.classExists("p1xel{}nobuildplus{}NoBuildPlus")) {
                 registerNewCompatibility(new NoBuildPlusComp(plugin));
             }
         }
