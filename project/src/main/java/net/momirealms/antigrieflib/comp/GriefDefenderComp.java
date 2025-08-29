@@ -1,6 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.griefdefender.api.GriefDefender;
+import com.griefdefender.api.User;
 import com.griefdefender.api.claim.TrustTypes;
 import net.momirealms.antigrieflib.AbstractComp;
 import org.bukkit.Location;
@@ -23,35 +24,40 @@ public class GriefDefenderComp extends AbstractComp {
     @Override
     public boolean canPlace(Player player, Location location) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
-                .map(user -> user.canPlace(player.getInventory().getItemInMainHand(), location))
+                .map(User::getPlayerData)
+                .map(data -> data.canPlace(player.getInventory().getItemInMainHand(), location))
                 .orElse(false);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
-                .map(user -> user.canBreak(location))
+                .map(User::getPlayerData)
+                .map(data -> data.canBreak(location))
                 .orElse(false);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
-                .map(user -> user.canUseBlock(location, TrustTypes.CONTAINER, false, false))
+                .map(User::getPlayerData)
+                .map(data -> data.canUseBlock(location, TrustTypes.CONTAINER, false, false))
                 .orElse(false);
     }
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
-                .map(user -> user.canInteractWithEntity(player.getInventory(), entity, TrustTypes.CONTAINER))
+                .map(User::getPlayerData)
+                .map(data -> data.canInteractWithEntity(player.getInventory(), entity, TrustTypes.CONTAINER))
                 .orElse(false);
     }
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
         return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
-                .map(user -> user.canHurtEntity(player.getInventory().getItemInMainHand(), entity))
+                .map(User::getPlayerData)
+                .map(data -> data.canHurtEntity(player.getInventory().getItemInMainHand(), entity))
                 .orElse(false);
     }
 }

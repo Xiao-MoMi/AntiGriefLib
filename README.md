@@ -35,21 +35,21 @@ repositories {
 ```
 ```kotlin
 dependencies {
-    implementation("net.momirealms:antigrieflib:0.16")
+    implementation("net.momirealms:antigrieflib:{VERSION}") // check the version in gradle.properties
 }
 ```
 
 ### API Guide
-```java
+```kotlin
 // Create a lib instance on plugin enable
 var lib = AntiGriefLib.builder(JavaPlugin)
                 .silentLogs(true)
                 .ignoreOP(true)
-                .addCompatibility(new MyCustomAntiGriefImpl())
-                .build();
+                .addCompatibility(MyCustomAntiGriefImpl())
+                .build()
 
 // use the api to check permissions
 if (!lib.canPlace(player, location)) {
-    player.sendMessage(Component.text("You can't place it here!"));
+    player.sendMessage(Component.text("You can't place it here!"))
 }
 ```
