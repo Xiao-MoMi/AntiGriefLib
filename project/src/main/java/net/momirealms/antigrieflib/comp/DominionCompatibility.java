@@ -4,12 +4,10 @@ import cn.lunadeer.dominion.api.DominionAPI;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.flag.Flags;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
-import net.momirealms.antigrieflib.CompatibilityException;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.Plugin;
 
-@SuppressWarnings("UnstableApiUsage")
 public class DominionCompatibility extends AbstractAntiGriefCompatibility {
     private DominionAPI api;
 

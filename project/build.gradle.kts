@@ -54,3 +54,38 @@ dependencies {
     compileOnly("io.github.fabiozumbi12.RedProtect:RedProtect-Spigot:8.1.1") { exclude(group = "*") }      // RedProtect
 }
 
+java {
+    withSourcesJar()
+}
+
+artifacts {
+    archives(tasks.shadowJar)
+}
+
+tasks {
+    shadowJar {
+        archiveClassifier = ""
+        archiveFileName = "AntiGriefLib-${rootProject.properties["project_version"]}.jar"
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://repo.momirealms.net/releases")
+            credentials(PasswordCredentials::class) {
+                username = System.getenv("REPO_USERNAME")
+                password = System.getenv("REPO_PASSWORD")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "net.momirealms"
+            artifactId = "antigrieflib"
+            version = rootProject.properties["project_version"].toString()
+            artifact(tasks["sourcesJar"])
+            from(components["shadow"])
+        }
+    }
+}
