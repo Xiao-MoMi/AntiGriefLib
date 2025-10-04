@@ -43,18 +43,18 @@ dependencies {
 
 ```kotlin
 // Create a lib instance on plugin enable
- val antiGrief: AntiGriefLib? = AntiGriefLib.builder(javaPlugin)
+val antiGrief: AntiGriefLib = AntiGriefLib.builder(javaPlugin)
     .ignoreOP(true)
     .silentLogs(false)
     .bypassPermission("myplugin.bypass")
     .suppressErrors(false)
     // remove the default WorldGuard compatibility implementation
-    .exclude(java.util.function.Predicate {p: org.bukkit.plugin.Plugin? -> p.getName() == "WorldGuard"})
+    .exclude(java.util.function.Predicate {p: org.bukkit.plugin.Plugin -> p.name == "WorldGuard"})
     // register your own custom WorldGuard implementation, so you can use custom flags
     .register(MyCustomWorldGuardCompatibility())
     .build()
- 
- // use the api to check permissions
+
+// use the api to check permissions
 if (!antiGrief.canPlace(player, location)) {
     player.sendMessage(Component.text("You can't place it here!"))
 }
