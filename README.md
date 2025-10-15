@@ -13,6 +13,7 @@ IridiumSkyBlock \
 KingdomsX \
 Landlord \
 Lands \
+NoBuildPlus \
 PlotSquared \
 PreciousStones \
 ProtectionStones \

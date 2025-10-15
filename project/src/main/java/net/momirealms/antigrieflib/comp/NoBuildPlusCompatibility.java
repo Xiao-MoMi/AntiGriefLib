@@ -23,22 +23,29 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
 
     @Override
     public boolean canPlace(Player player, Location location) {
-        return nbpAPI.canExecute(player.getWorld().getName(), Flags.build);
+        String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
+        return nbpAPI.canExecute(world, Flags.build);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
-        return nbpAPI.canExecute(player.getWorld().getName(), Flags.destroy);
+        String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
+        return nbpAPI.canExecute(world, Flags.destroy);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
-        return nbpAPI.canExecute(player.getWorld().getName(), Flags.use);
+        String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
+        return nbpAPI.canExecute(world, Flags.use);
     }
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
         return switch (entity.getType()) {
             case VILLAGER -> nbpAPI.canExecute(world, Flags.villager);
             case HORSE, DONKEY, MULE, SKELETON_HORSE, ZOMBIE_HORSE, MINECART, MINECART_CHEST, MINECART_FURNACE,
@@ -53,8 +60,10 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
+        String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
         return nbpAPI.canExecute(
-                player.getWorld().getName(),
+                world,
                 entity instanceof Player ? Flags.pvp : Flags.mob_damage
         );
     }
