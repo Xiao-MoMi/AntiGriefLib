@@ -46,7 +46,7 @@ public class PreciousStonesCompatibility extends AbstractAntiGriefCompatibility 
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return api.canPlace(player, location);
     }
 }

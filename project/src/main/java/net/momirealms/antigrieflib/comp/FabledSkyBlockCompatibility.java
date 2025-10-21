@@ -46,7 +46,7 @@ public class FabledSkyBlockCompatibility extends AbstractAntiGriefCompatibility 
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return isIslandMember(player, location);
     }
 

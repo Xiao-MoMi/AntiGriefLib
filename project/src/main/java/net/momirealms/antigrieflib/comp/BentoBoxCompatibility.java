@@ -61,7 +61,7 @@ public class BentoBoxCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return BentoBox.getInstance()
                 .getIslands()
                 .getIslandAt(location)

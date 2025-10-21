@@ -46,7 +46,7 @@ public class HuskTownsCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return isTownMember(player, location);
     }
 

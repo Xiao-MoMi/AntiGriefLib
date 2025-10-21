@@ -59,7 +59,7 @@ public class SaberFactionsCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(Board.getInstance().getFactionAt(FLocation.wrap(location)))
                 .map(faction -> faction.getAccess(FPlayers.getInstance().getByPlayer(player), PermissableAction.CONTAINER) == Access.ALLOW)
                 .orElse(true);

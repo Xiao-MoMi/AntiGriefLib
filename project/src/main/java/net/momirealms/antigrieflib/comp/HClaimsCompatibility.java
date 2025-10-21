@@ -60,7 +60,7 @@ public class HClaimsCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return service.findByLocation(location)
                 .map(claim -> claim.hasPermission(player, ClaimMemberPermission.INTERACT))
                 .orElse(true);

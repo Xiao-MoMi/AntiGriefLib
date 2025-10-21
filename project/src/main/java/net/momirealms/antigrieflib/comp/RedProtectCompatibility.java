@@ -65,7 +65,7 @@ public class RedProtectCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(api.getRegion(location))
                 .map(region -> region.canChest(player))
                 .orElse(true);

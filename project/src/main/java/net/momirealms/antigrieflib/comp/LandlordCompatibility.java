@@ -49,7 +49,7 @@ public class LandlordCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return landlordMemberCheck(player, location);
     }
 

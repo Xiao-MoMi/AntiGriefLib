@@ -73,7 +73,7 @@ public class SuperiorSkyblockCompatibility extends AbstractAntiGriefCompatibilit
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(location))
                 .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.CHEST_ACCESS))
                 .orElse(true);

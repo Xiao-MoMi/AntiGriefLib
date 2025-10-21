@@ -48,7 +48,7 @@ public class CrashClaimCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return api.getPermissionHelper().hasPermission(player.getUniqueId(), location, PermissionRoute.CONTAINERS);
     }
 }

@@ -19,7 +19,7 @@ public interface AntiGriefCompatibility {
 
     boolean canDamage(Player player, Entity entity);
 
-    boolean canInteractContainer(Player player, Location location);
+    boolean canOpenContainer(Player player, Location location);
 
     Plugin plugin();
 

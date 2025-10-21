@@ -60,7 +60,7 @@ public class UltimateClaimsCompatibility extends AbstractAntiGriefCompatibility 
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(location.getChunk()))
                 .map(claim -> claim.playerHasPerms(player, ClaimPerm.INTERACT))
                 .orElse(true);

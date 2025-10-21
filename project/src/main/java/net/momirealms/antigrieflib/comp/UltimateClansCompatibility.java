@@ -50,7 +50,7 @@ public class UltimateClansCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return checkClaimedMember(player, location);
     }
 

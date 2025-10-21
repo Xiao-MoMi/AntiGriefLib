@@ -45,7 +45,7 @@ public class PlotSquaredV5Compatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return isPlotMember(player, location);
     }
 

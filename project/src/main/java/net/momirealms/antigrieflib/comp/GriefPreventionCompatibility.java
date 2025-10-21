@@ -46,7 +46,7 @@ public class GriefPreventionCompatibility extends AbstractAntiGriefCompatibility
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return checkPermission(player, location, ClaimPermission.Inventory);
     }
 

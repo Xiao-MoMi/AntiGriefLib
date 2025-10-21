@@ -92,7 +92,7 @@ public class ResidenceCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
                 .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.container, false))
                 .orElse(true);

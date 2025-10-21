@@ -47,7 +47,7 @@ public class HuskClaimsCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         return api.isOperationAllowed(api.getOnlineUser(player), OperationType.CONTAINER_OPEN, api.getPosition(location));
     }
 }

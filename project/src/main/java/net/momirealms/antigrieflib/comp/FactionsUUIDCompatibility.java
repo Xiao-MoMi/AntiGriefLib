@@ -54,7 +54,7 @@ public class FactionsUUIDCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canInteractContainer(Player player, Location location) {
+    public boolean canOpenContainer(Player player, Location location) {
         if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
         return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, false);
     }
