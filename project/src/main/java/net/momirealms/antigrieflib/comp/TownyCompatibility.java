@@ -43,4 +43,9 @@ public class TownyCompatibility extends AbstractAntiGriefCompatibility {
     public boolean canDamage(Player player, Entity entity) {
         return entity instanceof Player ? TownyAPI.getInstance().isPVP(entity.getLocation()) : PlayerCacheUtil.getCachePermission(player, entity.getLocation(), entity.getLocation().getBlock().getType(), TownyPermission.ActionType.ITEM_USE);
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return PlayerCacheUtil.getCachePermission(player, location, location.getBlock().getType(), TownyPermission.ActionType.ITEM_USE);
+    }
 }

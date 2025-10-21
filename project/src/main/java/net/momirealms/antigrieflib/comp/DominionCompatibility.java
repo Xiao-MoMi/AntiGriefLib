@@ -66,4 +66,11 @@ public class DominionCompatibility extends AbstractAntiGriefCompatibility {
             return false;
         }
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        DominionDTO dto = this.api.getDominion(location);
+        if (dto == null) return true;
+        return this.api.checkPrivilegeFlag(dto, Flags.CONTAINER, player);
+    }
 }

@@ -52,4 +52,10 @@ public class FactionsUUIDCompatibility extends AbstractAntiGriefCompatibility {
         if (!plugin.worldUtil().isEnabled(entity.getWorld())) return true;
         return FactionsEntityListener.canDamage(player, entity, false);
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, false);
+    }
 }

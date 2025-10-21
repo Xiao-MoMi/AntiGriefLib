@@ -60,6 +60,15 @@ public class BentoBoxCompatibility extends AbstractAntiGriefCompatibility {
         return entityOperation(player, entity);
     }
 
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return BentoBox.getInstance()
+                .getIslands()
+                .getIslandAt(location)
+                .map(island -> island.isAllowed(User.getInstance(player), Flags.CONTAINER))
+                .orElse(true);
+    }
+
     private boolean entityOperation(final Player player, final Entity entity) {
         return BentoBox.getInstance()
                 .getIslands()

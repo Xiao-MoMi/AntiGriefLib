@@ -49,6 +49,11 @@ public class UltimateClansCompatibility extends AbstractAntiGriefCompatibility {
         return checkClaimedMember(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return checkClaimedMember(player, location);
+    }
+
     private boolean checkClaimedMember(Player player, Location location) {
         for (Map.Entry<String, ClaimImplement> entry : this.clans.getClaimAPI().findClaimedLocationImplement(location)) {
             ClaimImplement implement = entry.getValue();

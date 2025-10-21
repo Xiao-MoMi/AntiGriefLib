@@ -45,4 +45,9 @@ public class HuskClaimsCompatibility extends AbstractAntiGriefCompatibility {
     public boolean canDamage(Player player, Entity entity) {
         return api.isOperationAllowed(api.getOnlineUser(player), OperationType.PLAYER_DAMAGE_ENTITY, api.getPosition(entity.getLocation()));
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return api.isOperationAllowed(api.getOnlineUser(player), OperationType.CONTAINER_OPEN, api.getPosition(location));
+    }
 }

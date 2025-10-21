@@ -63,4 +63,11 @@ public class RedProtectCompatibility extends AbstractAntiGriefCompatibility {
                 })
                 .orElse(true);
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return Optional.ofNullable(api.getRegion(location))
+                .map(region -> region.canChest(player))
+                .orElse(true);
+    }
 }

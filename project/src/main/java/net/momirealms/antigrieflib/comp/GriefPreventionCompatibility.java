@@ -45,6 +45,11 @@ public class GriefPreventionCompatibility extends AbstractAntiGriefCompatibility
         return checkPermission(player, entity.getLocation(), ClaimPermission.Inventory);
     }
 
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return checkPermission(player, location, ClaimPermission.Inventory);
+    }
+
     private boolean checkPermission(Player player, Location location, ClaimPermission permission) {
         PlayerData playerData = GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId());
         Claim claim = GriefPrevention.instance.dataStore.getClaimAt(location, false, playerData.lastClaim);

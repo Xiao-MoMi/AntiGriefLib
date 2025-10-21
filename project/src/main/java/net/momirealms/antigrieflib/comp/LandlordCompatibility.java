@@ -48,6 +48,11 @@ public class LandlordCompatibility extends AbstractAntiGriefCompatibility {
         return landlordMemberCheck(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return landlordMemberCheck(player, location);
+    }
+
     private boolean landlordMemberCheck(final Player player, final Location location) {
         return Optional.ofNullable(landLord.getWGManager().getRegion(location))
                 .map(region -> region.isOwner(player.getUniqueId()) || region.isFriend(player.getUniqueId()))

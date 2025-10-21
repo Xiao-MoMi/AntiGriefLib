@@ -67,4 +67,11 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
                 entity instanceof Player ? Flags.pvp : Flags.mob_damage
         );
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        String world = player.getWorld().getName();
+        if (!nbpAPI.isWorldEnabled(world)) return true;
+        return nbpAPI.canExecute(world, Flags.container);
+    }
 }

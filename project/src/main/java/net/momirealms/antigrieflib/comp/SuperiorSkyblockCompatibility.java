@@ -4,6 +4,7 @@ import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import com.bgsoftware.superiorskyblock.island.privilege.IslandPrivileges;
 import com.bgsoftware.superiorskyblock.world.BukkitEntities;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
 import org.bukkit.Location;
@@ -26,28 +27,28 @@ public class SuperiorSkyblockCompatibility extends AbstractAntiGriefCompatibilit
     @Override
     public boolean canPlace(Player player, Location location) {
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(location))
-                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivilege.getByName("BUILD")))
+                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.BUILD))
                 .orElse(true);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(location))
-                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivilege.getByName("BREAK")))
+                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.BREAK))
                 .orElse(true);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(location))
-                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivilege.getByName("INTERACT")))
+                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.INTERACT))
                 .orElse(true);
     }
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(entity.getLocation()))
-                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivilege.getByName("INTERACT")))
+                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.INTERACT))
                 .orElse(true);
     }
 
@@ -68,6 +69,13 @@ public class SuperiorSkyblockCompatibility extends AbstractAntiGriefCompatibilit
                     }
                     return entity instanceof Player ? !banPvp : island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), category.getDamagePrivilege());
                 })
+                .orElse(true);
+    }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return Optional.ofNullable(SuperiorSkyblockAPI.getIslandAt(location))
+                .map(island -> island.hasPermission(SuperiorSkyblockAPI.getPlayer(player), IslandPrivileges.CHEST_ACCESS))
                 .orElse(true);
     }
 }

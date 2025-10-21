@@ -58,4 +58,11 @@ public class HClaimsCompatibility extends AbstractAntiGriefCompatibility {
                 .map(claim -> claim.hasPermission(player, ClaimMemberPermission.DAMAGE_ANIMALS))
                 .orElse(true);
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return service.findByLocation(location)
+                .map(claim -> claim.hasPermission(player, ClaimMemberPermission.INTERACT))
+                .orElse(true);
+    }
 }

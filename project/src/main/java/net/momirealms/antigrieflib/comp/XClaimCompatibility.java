@@ -66,4 +66,11 @@ public class XClaimCompatibility extends AbstractAntiGriefCompatibility {
                 .map(claim -> claim.getUserPermission(player, per))
                 .orElse(true);
     }
+
+    @Override
+    public boolean canInteractContainer(Player player, Location location) {
+        return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
+                .map(claim -> claim.getUserPermission(player, Permission.CHEST_OPEN))
+                .orElse(true);
+    }
 }
