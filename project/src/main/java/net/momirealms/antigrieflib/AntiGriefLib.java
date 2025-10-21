@@ -195,6 +195,31 @@ public final class AntiGriefLib {
         }
     }
 
+    /**
+     * Detects if a player has permission to interact with a container at a certain location
+     *
+     * @param player player
+     * @param location location
+     * @return has perm or not
+     */
+    public boolean canInteractContainer(Player player, Location location) {
+        if (this.ignoreOP && player.isOp()) return true;
+        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
+        try {
+            for (AntiGriefCompatibility antiGrief : this.providers) {
+                if (!antiGrief.canInteractContainer(player, location)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            if (!this.suppressErrors) {
+                throw new AntiGriefException(e);
+            }
+            return false;
+        }
+    }
+
     public static class Builder {
         private final Map<String, AntiGriefCompatibility> byId = new HashMap<>();
         private final JavaPlugin plugin;
