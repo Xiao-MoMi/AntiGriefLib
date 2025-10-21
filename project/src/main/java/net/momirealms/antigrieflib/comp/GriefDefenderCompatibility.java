@@ -60,4 +60,12 @@ public class GriefDefenderCompatibility extends AbstractAntiGriefCompatibility {
                 .map(data -> data.canHurtEntity(player.getInventory().getItemInMainHand(), entity))
                 .orElse(false);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return Optional.ofNullable(GriefDefender.getCore().getUser(player.getUniqueId()))
+                .map(User::getPlayerData)
+                .map(data -> data.canUseBlock(location, TrustTypes.CONTAINER, false, false))
+                .orElse(false);
+    }
 }

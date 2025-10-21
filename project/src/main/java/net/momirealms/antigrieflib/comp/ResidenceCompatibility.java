@@ -90,4 +90,11 @@ public class ResidenceCompatibility extends AbstractAntiGriefCompatibility {
                 })
                 .orElse(true);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return Optional.ofNullable(com.bekvon.bukkit.residence.Residence.getInstance().getResidenceManager().getByLoc(location))
+                .map(claimedResidence -> claimedResidence.getPermissions().playerHas(player, Flags.container, false))
+                .orElse(true);
+    }
 }

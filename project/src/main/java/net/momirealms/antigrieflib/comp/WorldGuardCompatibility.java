@@ -93,4 +93,14 @@ public class WorldGuardCompatibility extends AbstractAntiGriefCompatibility {
                         entity instanceof Player ? Flags.PVP : flag
                 );
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return container.createQuery()
+                .testBuild(
+                        BukkitAdapter.adapt(location),
+                        WorldGuardPlugin.inst().wrapPlayer(player),
+                        Flags.CHEST_ACCESS
+                );
+    }
 }

@@ -58,4 +58,11 @@ public class UltimateClaimsCompatibility extends AbstractAntiGriefCompatibility 
                 .map(claim -> claim.playerHasPerms(player, ClaimPerm.MOB_KILLING))
                 .orElse(true);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return Optional.ofNullable(ultimateClaims.getClaimManager().getClaim(location.getChunk()))
+                .map(claim -> claim.playerHasPerms(player, ClaimPerm.INTERACT))
+                .orElse(true);
+    }
 }

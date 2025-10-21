@@ -85,4 +85,16 @@ public class LandsCompatibility extends AbstractAntiGriefCompatibility {
                         )
                 ).orElse(true);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return Optional.ofNullable(api.getWorld(location.getWorld()))
+                .map(world ->
+                        world.hasRoleFlag(
+                                player.getUniqueId(),
+                                location,
+                                Flags.INTERACT_CONTAINER
+                        )
+                ).orElse(true);
+    }
 }

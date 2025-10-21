@@ -44,4 +44,9 @@ public class PreciousStonesCompatibility extends AbstractAntiGriefCompatibility 
     public boolean canDamage(Player player, Entity entity) {
         return api.canBreak(player, entity.getLocation());
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return api.canPlace(player, location);
+    }
 }

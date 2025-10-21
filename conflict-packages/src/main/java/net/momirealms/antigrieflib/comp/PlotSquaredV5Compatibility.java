@@ -44,6 +44,11 @@ public class PlotSquaredV5Compatibility extends AbstractAntiGriefCompatibility {
         return isPlotMember(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return isPlotMember(player, location);
+    }
+
     private boolean isPlotMember(Player player, Location location) {
         var psLocation = BukkitUtil.getLocation(location);
         if (psLocation.isPlotRoad()) return false;

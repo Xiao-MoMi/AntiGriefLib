@@ -46,4 +46,9 @@ public class CrashClaimCompatibility extends AbstractAntiGriefCompatibility {
     public boolean canDamage(Player player, Entity entity) {
         return api.getPermissionHelper().hasPermission(player.getUniqueId(), entity.getLocation(), PermissionRoute.ENTITIES);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return api.getPermissionHelper().hasPermission(player.getUniqueId(), location, PermissionRoute.CONTAINERS);
+    }
 }

@@ -73,4 +73,14 @@ public class IridiumSkyblockCompatibility extends AbstractAntiGriefCompatibility
                         PermissionType.KILL_MOBS)
                 ).orElse(true);
     }
+
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return api.getIslandViaLocation(location)
+                .map(island -> api.getIslandPermission(
+                        island,
+                        api.getUser(player),
+                        PermissionType.OPEN_CONTAINERS)
+                ).orElse(true);
+    }
 }

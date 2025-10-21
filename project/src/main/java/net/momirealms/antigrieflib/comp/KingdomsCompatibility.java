@@ -45,6 +45,11 @@ public class KingdomsCompatibility extends AbstractAntiGriefCompatibility {
         return kingdomsMemberCheck(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return kingdomsMemberCheck(player, location);
+    }
+
     private boolean kingdomsMemberCheck(Player player, Location location) {
         Land land = Land.getLand(location);
         if (land == null || !land.isClaimed())

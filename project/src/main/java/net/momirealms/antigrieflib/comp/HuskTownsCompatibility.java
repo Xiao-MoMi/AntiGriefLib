@@ -45,6 +45,11 @@ public class HuskTownsCompatibility extends AbstractAntiGriefCompatibility {
         return isTownMember(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return isTownMember(player, location);
+    }
+
     public boolean isTownMember(Player player, Location location) {
         return api.getClaimAt(api.getPosition(location))
                 .map(townClaim -> townClaim.town().getMembers().containsKey(player.getUniqueId()))

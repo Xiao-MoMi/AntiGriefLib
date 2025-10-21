@@ -45,6 +45,11 @@ public class FabledSkyBlockCompatibility extends AbstractAntiGriefCompatibility 
         return isIslandMember(player, entity.getLocation());
     }
 
+    @Override
+    public boolean canOpenContainer(Player player, Location location) {
+        return isIslandMember(player, location);
+    }
+
     private boolean isIslandMember(Player player, Location location) {
         return Optional.ofNullable(SkyBlockAPI.getIslandManager().getIslandAtLocation(location))
                 .map(island -> {
