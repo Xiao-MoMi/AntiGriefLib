@@ -1,7 +1,7 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.iridium.iridiumskyblock.api.IridiumSkyblockAPI;
-import com.iridium.iridiumteams.PermissionType;
+import com.iridium.iridiumskyblock.dependencies.iridiumteams.PermissionType;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;

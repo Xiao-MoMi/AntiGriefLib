@@ -24,7 +24,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")                // Paper
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.9")                   // WorldGuard
     compileOnly("com.github.angeschossen:LandsAPI:7.17.2")                         // Lands
-    compileOnly("com.iridium:IridiumSkyblock:4.0.8")                              // IridiumSkyBlock
+    compileOnly("com.iridium:IridiumSkyblock:4.1.2")                              // IridiumSkyBlock
     compileOnly("world.bentobox:bentobox:2.1.0-SNAPSHOT")                         // BentoBox
     compileOnly("com.griefdefender:api:2.1.0-SNAPSHOT")                           // GriefDefender
     compileOnly("net.william278.husktowns:husktowns-bukkit:3.1.4")                // HuskTowns
