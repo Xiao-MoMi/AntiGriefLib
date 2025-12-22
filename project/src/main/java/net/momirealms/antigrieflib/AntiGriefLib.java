@@ -270,8 +270,9 @@ public final class AntiGriefLib {
         }
 
         @Nullable
-        public AntiGriefCompatibility removeById(String id) {
-            return this.byId.remove(id);
+        public Builder removeById(String id) {
+            this.byId.remove(id);
+            return this;
         }
 
         public AntiGriefLib build() {
