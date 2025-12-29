@@ -26,36 +26,36 @@ public class FactionsUUIDCompatibility extends AbstractAntiGriefCompatibility {
     @Override
     public boolean canPlace(Player player, Location location) {
         if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
-        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.BUILD, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.BUILD, true);
     }
 
     @Override
     public boolean canBreak(Player player, Location location) {
         if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
-        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.DESTROY, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.DESTROY, true);
     }
 
     @Override
     public boolean canInteract(Player player, Location location) {
         if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
-        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, true);
     }
 
     @Override
     public boolean canInteractEntity(Player player, Entity entity) {
         if (!plugin.worldUtil().isEnabled(entity.getWorld())) return true;
-        return FactionsBlockListener.playerCanBuildDestroyBlock(player, entity.getLocation(), PermissibleActions.CONTAINER, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, entity.getLocation(), PermissibleActions.CONTAINER, true);
     }
 
     @Override
     public boolean canDamage(Player player, Entity entity) {
         if (!plugin.worldUtil().isEnabled(entity.getWorld())) return true;
-        return FactionsEntityListener.canDamage(player, entity, false);
+        return FactionsEntityListener.canDamage(player, entity, true);
     }
 
     @Override
     public boolean canOpenContainer(Player player, Location location) {
         if (!plugin.worldUtil().isEnabled(location.getWorld())) return true;
-        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, false);
+        return FactionsBlockListener.playerCanBuildDestroyBlock(player, location, PermissibleActions.CONTAINER, true);
     }
 }
