@@ -1,15 +1,15 @@
 package net.momirealms.antigrieflib;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
 public abstract class AbstractAntiGriefCompatibility implements AntiGriefCompatibility {
-    private final Map<Flag<?>, BiPredicate<Player, ?>> flagTesters = new Object2ObjectOpenHashMap<>();
+    private final Map<Flag<?>, BiPredicate<Player, ?>> flagTesters = new IdentityHashMap<>(9);
     protected final Plugin plugin;
 
     public AbstractAntiGriefCompatibility(Plugin plugin) {

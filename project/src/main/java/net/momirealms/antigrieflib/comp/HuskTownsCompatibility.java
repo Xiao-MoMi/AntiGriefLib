@@ -1,14 +1,15 @@
 package net.momirealms.antigrieflib.comp;
 
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import net.momirealms.antigrieflib.Flag;
 import net.william278.husktowns.api.BukkitHuskTownsAPI;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
-public class HuskTownsCompatibility extends AbstractAntiGriefCompatibility {
+public class HuskTownsCompatibility extends AbstractMemberAntiGriefCompatibility {
 
     private BukkitHuskTownsAPI api;
 
@@ -16,19 +17,20 @@ public class HuskTownsCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
-    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
         api = BukkitHuskTownsAPI.getInstance();
-        registerFlagTester(Flag.PLACE, this::isTownMember);
-        registerFlagTester(Flag.BREAK, this::isTownMember);
-        registerFlagTester(Flag.INTERACT, this::isTownMember);
-        registerFlagTester(Flag.INTERACT_ENTITY, this::isTownMember);
-        registerFlagTester(Flag.DAMAGE_ENTITY, this::isTownMember);
-        registerFlagTester(Flag.OPEN_CONTAINER, this::isTownMember);
-        registerFlagTester(Flag.OPEN_DOOR, this::isTownMember);
-        registerFlagTester(Flag.USE_BUTTON, this::isTownMember);
-        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::isTownMember);
+    }
+
+    @Override
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
+        if (value instanceof Location location) {
+            return isTownMember(player, location);
+        } else if (value instanceof Entity entity) {
+            return isTownMember(player, entity);
+        } else {
+            return false;
+        }
     }
 
     private boolean isTownMember(Player player, Entity entity) {

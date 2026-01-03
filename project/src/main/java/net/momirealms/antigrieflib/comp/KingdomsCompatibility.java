@@ -1,34 +1,36 @@
 package net.momirealms.antigrieflib.comp;
 
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 import org.kingdoms.constants.land.Land;
 import org.kingdoms.constants.player.KingdomPlayer;
 
 import java.util.Optional;
 
-public class KingdomsCompatibility extends AbstractAntiGriefCompatibility {
+public class KingdomsCompatibility extends AbstractMemberAntiGriefCompatibility {
 
     public KingdomsCompatibility(Plugin plugin) {
         super(plugin);
     }
 
-    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
-        registerFlagTester(Flag.PLACE, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.BREAK, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.INTERACT, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.INTERACT_ENTITY, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.DAMAGE_ENTITY, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.OPEN_CONTAINER, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.OPEN_DOOR, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.USE_BUTTON, this::kingdomsMemberCheck);
-        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::kingdomsMemberCheck);
+    }
+
+    @Override
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
+        if (value instanceof Location location) {
+            return kingdomsMemberCheck(player, location);
+        } else if (value instanceof Entity entity) {
+            return kingdomsMemberCheck(player, entity);
+        } else {
+            return false;
+        }
     }
 
     private boolean kingdomsMemberCheck(Player player, Entity entity) {

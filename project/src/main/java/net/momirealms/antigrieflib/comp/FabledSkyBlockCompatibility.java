@@ -2,33 +2,35 @@ package net.momirealms.antigrieflib.comp;
 
 import com.craftaro.skyblock.api.SkyBlockAPI;
 import com.craftaro.skyblock.api.island.IslandRole;
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class FabledSkyBlockCompatibility extends AbstractAntiGriefCompatibility {
+public class FabledSkyBlockCompatibility extends AbstractMemberAntiGriefCompatibility {
 
     public FabledSkyBlockCompatibility(Plugin plugin) {
         super(plugin);
     }
 
-    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
-        registerFlagTester(Flag.PLACE, this::isIslandMember);
-        registerFlagTester(Flag.BREAK, this::isIslandMember);
-        registerFlagTester(Flag.INTERACT, this::isIslandMember);
-        registerFlagTester(Flag.INTERACT_ENTITY, this::isIslandMember);
-        registerFlagTester(Flag.DAMAGE_ENTITY, this::isIslandMember);
-        registerFlagTester(Flag.OPEN_CONTAINER, this::isIslandMember);
-        registerFlagTester(Flag.OPEN_DOOR, this::isIslandMember);
-        registerFlagTester(Flag.USE_BUTTON, this::isIslandMember);
-        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::isIslandMember);
+    }
+
+    @Override
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
+        if (value instanceof Location location) {
+            return isIslandMember(player, location);
+        } else if (value instanceof Entity entity) {
+            return isIslandMember(player, entity);
+        } else {
+            return false;
+        }
     }
 
     private boolean isIslandMember(Player player, Entity entity) {

@@ -1,33 +1,35 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.plotsquared.bukkit.util.BukkitUtil;
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class PlotSquaredV5Compatibility extends AbstractAntiGriefCompatibility {
+public class PlotSquaredV5Compatibility extends AbstractMemberAntiGriefCompatibility {
 
     public PlotSquaredV5Compatibility(Plugin plugin) {
         super(plugin);
     }
 
-    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
-        registerFlagTester(Flag.PLACE, this::isPlotMember);
-        registerFlagTester(Flag.BREAK, this::isPlotMember);
-        registerFlagTester(Flag.INTERACT, this::isPlotMember);
-        registerFlagTester(Flag.INTERACT_ENTITY, this::isPlotMember);
-        registerFlagTester(Flag.DAMAGE_ENTITY, this::isPlotMember);
-        registerFlagTester(Flag.OPEN_CONTAINER, this::isPlotMember);
-        registerFlagTester(Flag.OPEN_DOOR, this::isPlotMember);
-        registerFlagTester(Flag.USE_BUTTON, this::isPlotMember);
-        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::isPlotMember);
+    }
+
+    @Override
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
+        if (value instanceof Location location) {
+            return isPlotMember(player, location);
+        } else if (value instanceof Entity entity) {
+            return isPlotMember(player, entity);
+        } else {
+            return false;
+        }
     }
 
     private boolean isPlotMember(Player player, Entity entity) {

@@ -1,17 +1,18 @@
 package net.momirealms.antigrieflib.comp;
 
 import biz.princeps.landlord.api.ILandLord;
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-public class LandlordCompatibility extends AbstractAntiGriefCompatibility {
+public class LandlordCompatibility extends AbstractMemberAntiGriefCompatibility {
 
     private ILandLord landLord;
 
@@ -19,19 +20,20 @@ public class LandlordCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
-    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
         landLord = (ILandLord) Bukkit.getPluginManager().getPlugin("Landlord");
-        registerFlagTester(Flag.PLACE, this::landlordMemberCheck);
-        registerFlagTester(Flag.BREAK, this::landlordMemberCheck);
-        registerFlagTester(Flag.INTERACT, this::landlordMemberCheck);
-        registerFlagTester(Flag.INTERACT_ENTITY, this::landlordMemberCheck);
-        registerFlagTester(Flag.DAMAGE_ENTITY, this::landlordMemberCheck);
-        registerFlagTester(Flag.OPEN_CONTAINER, this::landlordMemberCheck);
-        registerFlagTester(Flag.OPEN_DOOR, this::landlordMemberCheck);
-        registerFlagTester(Flag.USE_BUTTON, this::landlordMemberCheck);
-        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::landlordMemberCheck);
+    }
+
+    @Override
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
+        if (value instanceof Location location) {
+            return landlordMemberCheck(player, location);
+        } else if (value instanceof Entity entity) {
+            return landlordMemberCheck(player, entity);
+        } else {
+            return false;
+        }
     }
 
     private boolean landlordMemberCheck(Player player, Entity entity) {
