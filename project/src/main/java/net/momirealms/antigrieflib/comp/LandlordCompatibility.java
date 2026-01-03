@@ -2,6 +2,7 @@ package net.momirealms.antigrieflib.comp;
 
 import biz.princeps.landlord.api.ILandLord;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -18,39 +19,23 @@ public class LandlordCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
         landLord = (ILandLord) Bukkit.getPluginManager().getPlugin("Landlord");
+        registerFlagTester(Flag.PLACE, this::landlordMemberCheck);
+        registerFlagTester(Flag.BREAK, this::landlordMemberCheck);
+        registerFlagTester(Flag.INTERACT, this::landlordMemberCheck);
+        registerFlagTester(Flag.INTERACT_ENTITY, this::landlordMemberCheck);
+        registerFlagTester(Flag.DAMAGE_ENTITY, this::landlordMemberCheck);
+        registerFlagTester(Flag.OPEN_CONTAINER, this::landlordMemberCheck);
+        registerFlagTester(Flag.OPEN_DOOR, this::landlordMemberCheck);
+        registerFlagTester(Flag.USE_BUTTON, this::landlordMemberCheck);
+        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::landlordMemberCheck);
     }
 
-    @Override
-    public boolean canPlace(Player player, Location location) {
-        return landlordMemberCheck(player, location);
-    }
-
-    @Override
-    public boolean canBreak(Player player, Location location) {
-        return landlordMemberCheck(player, location);
-    }
-
-    @Override
-    public boolean canInteract(Player player, Location location) {
-        return landlordMemberCheck(player, location);
-    }
-
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
+    private boolean landlordMemberCheck(Player player, Entity entity) {
         return landlordMemberCheck(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
-        return landlordMemberCheck(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
-        return landlordMemberCheck(player, location);
     }
 
     private boolean landlordMemberCheck(final Player player, final Location location) {

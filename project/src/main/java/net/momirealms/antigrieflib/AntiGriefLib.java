@@ -2,8 +2,6 @@ package net.momirealms.antigrieflib;
 
 import net.momirealms.antigrieflib.comp.*;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -69,145 +67,20 @@ public final class AntiGriefLib {
     }
 
     /**
-     * Detects if a player has permission to place something at a certain location
+     * Detects if a player has permission to perform a flag
      *
      * @param player player
-     * @param location location
+     * @param flag flag
+     * @param value value
      * @return has perm or not
+     * @param <T> flag value type
      */
-    public boolean canPlace(Player player, Location location) {
+    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
         if (this.ignoreOP && player.isOp()) return true;
         if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
         try {
             for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canPlace(player, location)) {
-                    return false;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            if (!this.suppressErrors) {
-                throw new AntiGriefException(e);
-            }
-            return false;
-        }
-    }
-    
-    /**
-     * Detects if a player has permission to break something at a certain location
-     *
-     * @param player player
-     * @param location location
-     * @return has perm or not
-     */
-    public boolean canBreak(Player player, Location location) {
-        if (this.ignoreOP && player.isOp()) return true;
-        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
-        try {
-            for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canBreak(player, location)) {
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            if (!this.suppressErrors) {
-                throw new AntiGriefException(e);
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Detects if a player has permission to interact something at a certain location
-     *
-     * @param player player
-     * @param location location
-     * @return has perm or not
-     */
-    public boolean canInteract(Player player, Location location) {
-        if (this.ignoreOP && player.isOp()) return true;
-        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
-        try {
-            for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canInteract(player, location)) {
-                    return false;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            if (!this.suppressErrors) {
-                throw new AntiGriefException(e);
-            }
-            return false;
-        }
-    }
-
-    /**
-     * Detects if a player has permission to interact with an entity
-     *
-     * @param player player
-     * @param entity entity
-     * @return has perm or not
-     */
-    public boolean canInteractEntity(Player player, Entity entity) {
-        if (this.ignoreOP && player.isOp()) return true;
-        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
-        try {
-            for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canInteractEntity(player, entity)) {
-                    return false;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            if (!this.suppressErrors) {
-                throw new AntiGriefException(e);
-            }
-            return false;
-        }
-    }
-
-    /**
-     * Detects if a player has permission to damage an entity
-     *
-     * @param player player
-     * @param entity entity
-     * @return has perm or not
-     */
-    public boolean canDamage(Player player, Entity entity) {
-        if (entity instanceof Player another && !another.getWorld().getPVP()) {
-            return false;
-        }
-        if (this.ignoreOP && player.isOp()) return true;
-        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
-        try {
-            for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canDamage(player, entity)) {
-                    return false;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            if (!this.suppressErrors) {
-                throw new AntiGriefException(e);
-            }
-            return false;
-        }
-    }
-
-    /**
-     * Detects if a player has permission to open a container
-     *
-     * @param player player
-     * @param location location
-     * @return has perm or not
-     */
-    public boolean canOpenContainer(Player player, Location location) {
-        if (this.ignoreOP && player.isOp()) return true;
-        if (this.bypassPermission != null && player.hasPermission(this.bypassPermission)) return true;
-        try {
-            for (AntiGriefCompatibility antiGrief : this.providers) {
-                if (!antiGrief.canOpenContainer(player, location)) {
+                if (!antiGrief.test(player, flag, value)) {
                     return false;
                 }
             }
