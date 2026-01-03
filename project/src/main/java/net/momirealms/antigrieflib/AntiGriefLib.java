@@ -308,11 +308,6 @@ public final class AntiGriefLib {
                     consumer.accept(() -> new PreciousStonesCompatibility(plugin));
                 }
             });
-            getOptionalPlugin("hClaims").ifPresent(plugin -> {
-                if (classExists("com{}hakan{}claim{}shadow{}com{}hakan{}spinjection{}SpigotBootstrap")) {
-                    consumer.accept(() -> new HClaimsCompatibility(plugin));
-                }
-            });
             getOptionalPlugin("Dominion").ifPresent(plugin -> {
                 if (classExists("cn{}lunadeer{}dominion{}api{}DominionAPI")) {
                     consumer.accept(() -> new DominionCompatibility(plugin));
