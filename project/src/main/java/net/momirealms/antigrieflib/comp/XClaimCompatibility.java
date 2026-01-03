@@ -4,6 +4,7 @@ import codes.wasabi.xclaim.api.Claim;
 import codes.wasabi.xclaim.api.enums.EntityGroup;
 import codes.wasabi.xclaim.api.enums.Permission;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -18,40 +19,45 @@ public class XClaimCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
+        registerFlagTester(Flag.PLACE, this::canPlace);
+        registerFlagTester(Flag.BREAK, this::canBreak);
+        registerFlagTester(Flag.INTERACT, this::canInteract);
+        registerFlagTester(Flag.INTERACT_ENTITY, this::canInteractEntity);
+        registerFlagTester(Flag.DAMAGE_ENTITY, this::canDamageEntity);
+        registerFlagTester(Flag.OPEN_CONTAINER, this::canOpenContainer);
+        registerFlagTester(Flag.OPEN_DOOR, this::canOpenDoor);
+        registerFlagTester(Flag.USE_BUTTON, this::canUseButton);
+        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::canUsePressurePlate);
     }
 
-    @Override
-    public boolean canPlace(Player player, Location location) {
+    private boolean canPlace(Player player, Location location) {
         return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
                 .map(claim -> claim.getUserPermission(player, Permission.BUILD))
                 .orElse(true);
     }
 
-    @Override
-    public boolean canBreak(Player player, Location location) {
+    private boolean canBreak(Player player, Location location) {
         return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
                 .map(claim -> claim.getUserPermission(player, Permission.BREAK))
                 .orElse(true);
     }
 
-    @Override
-    public boolean canInteract(Player player, Location location) {
+    private boolean canInteract(Player player, Location location) {
         return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
                 .map(claim -> claim.getUserPermission(player, Permission.INTERACT))
                 .orElse(true);
     }
 
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
+    private boolean canInteractEntity(Player player, Entity entity) {
         return Optional.ofNullable(Claim.getByChunk(entity.getLocation().getChunk()))
                 .map(claim -> claim.getUserPermission(player, Permission.INTERACT))
                 .orElse(true);
     }
 
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
+    private boolean canDamageEntity(Player player, Entity entity) {
         final Optional<EntityGroup> og = Arrays.stream(EntityGroup.values()).filter(g -> g.contains(entity)).findFirst();
         if (og.isEmpty()) return true;
         final EntityGroup group = og.get();
@@ -67,10 +73,27 @@ public class XClaimCompatibility extends AbstractAntiGriefCompatibility {
                 .orElse(true);
     }
 
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
+    private boolean canOpenContainer(Player player, Location location) {
         return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
                 .map(claim -> claim.getUserPermission(player, Permission.CHEST_OPEN))
+                .orElse(true);
+    }
+
+    private boolean canOpenDoor(Player player, Location location) {
+        return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
+                .map(claim -> claim.getUserPermission(player, Permission.INTERACT))
+                .orElse(true);
+    }
+
+    private boolean canUseButton(Player player, Location location) {
+        return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
+                .map(claim -> claim.getUserPermission(player, Permission.INTERACT))
+                .orElse(true);
+    }
+
+    private boolean canUsePressurePlate(Player player, Location location) {
+        return Optional.ofNullable(Claim.getByChunk(location.getChunk()))
+                .map(claim -> claim.getUserPermission(player, Permission.INTERACT))
                 .orElse(true);
     }
 }

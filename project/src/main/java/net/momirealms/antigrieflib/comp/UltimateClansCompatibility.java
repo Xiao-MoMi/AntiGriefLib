@@ -3,6 +3,7 @@ package net.momirealms.antigrieflib.comp;
 import me.ulrich.clans.Clans;
 import me.ulrich.clans.interfaces.ClaimImplement;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -19,39 +20,23 @@ public class UltimateClansCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
         this.clans = (Clans) Bukkit.getPluginManager().getPlugin("UltimateClans");
+        registerFlagTester(Flag.PLACE, this::checkClaimedMember);
+        registerFlagTester(Flag.BREAK, this::checkClaimedMember);
+        registerFlagTester(Flag.INTERACT, this::checkClaimedMember);
+        registerFlagTester(Flag.INTERACT_ENTITY, this::checkClaimedMember);
+        registerFlagTester(Flag.DAMAGE_ENTITY, this::checkClaimedMember);
+        registerFlagTester(Flag.OPEN_CONTAINER, this::checkClaimedMember);
+        registerFlagTester(Flag.OPEN_DOOR, this::checkClaimedMember);
+        registerFlagTester(Flag.USE_BUTTON, this::checkClaimedMember);
+        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::checkClaimedMember);
     }
 
-    @Override
-    public boolean canPlace(Player player, Location location) {
-        return checkClaimedMember(player, location);
-    }
-
-    @Override
-    public boolean canBreak(Player player, Location location) {
-        return checkClaimedMember(player, location);
-    }
-
-    @Override
-    public boolean canInteract(Player player, Location location) {
-        return checkClaimedMember(player, location);
-    }
-
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
+    private boolean checkClaimedMember(Player player, Entity entity) {
         return checkClaimedMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
-        return checkClaimedMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
-        return checkClaimedMember(player, location);
     }
 
     private boolean checkClaimedMember(Player player, Location location) {

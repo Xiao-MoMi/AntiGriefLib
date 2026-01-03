@@ -4,6 +4,7 @@ import cn.lunadeer.dominion.api.DominionAPI;
 import cn.lunadeer.dominion.api.dtos.DominionDTO;
 import cn.lunadeer.dominion.api.dtos.flag.Flags;
 import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.Plugin;
@@ -15,6 +16,7 @@ public class DominionCompatibility extends AbstractAntiGriefCompatibility {
         super(plugin);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     public void init() {
         try {
@@ -22,38 +24,42 @@ public class DominionCompatibility extends AbstractAntiGriefCompatibility {
         } catch (Exception e) {
             throw new RuntimeException("Failed to init DominionAPI", e);
         }
+        registerFlagTester(Flag.PLACE, this::canPlace);
+        registerFlagTester(Flag.BREAK, this::canBreak);
+        registerFlagTester(Flag.INTERACT, this::canInteract);
+        registerFlagTester(Flag.INTERACT_ENTITY, this::canInteractEntity);
+        registerFlagTester(Flag.DAMAGE_ENTITY, this::canDamageEntity);
+        registerFlagTester(Flag.OPEN_CONTAINER, this::canOpenContainer);
+        registerFlagTester(Flag.OPEN_DOOR, this::canOpenDoor);
+        registerFlagTester(Flag.USE_BUTTON, this::canUseButton);
+        registerFlagTester(Flag.USE_PRESSURE_PLATE, this::canUsePressurePlate);
     }
 
-    @Override
-    public boolean canPlace(Player player, Location location) {
+    private boolean canPlace(Player player, Location location) {
         DominionDTO dto = this.api.getDominion(location);
         if (dto == null) return true;
         return this.api.checkPrivilegeFlag(dto, Flags.PLACE, player);
     }
 
-    @Override
-    public boolean canBreak(Player player, Location location) {
+    private boolean canBreak(Player player, Location location) {
         DominionDTO dto = this.api.getDominion(location);
         if (dto == null) return true;
         return this.api.checkPrivilegeFlag(dto, Flags.BREAK_BLOCK, player);
     }
 
-    @Override
-    public boolean canInteract(Player player, Location location) {
+    private boolean canInteract(Player player, Location location) {
         DominionDTO dto = this.api.getDominion(location);
         if (dto == null) return true;
         return this.api.checkPrivilegeFlag(dto, Flags.PLACE, player);
     }
 
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
+    private boolean canInteractEntity(Player player, Entity entity) {
         DominionDTO dto = this.api.getDominion(entity.getLocation());
         if (dto == null) return true;
         return this.api.checkPrivilegeFlag(dto, Flags.PLACE, player);
     }
 
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
+    private boolean canDamageEntity(Player player, Entity entity) {
         DominionDTO dto = this.api.getDominion(entity.getLocation());
         if (dto == null) return true;
         if (entity instanceof Monster) {
@@ -67,10 +73,27 @@ public class DominionCompatibility extends AbstractAntiGriefCompatibility {
         }
     }
 
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
+    private boolean canOpenContainer(Player player, Location location) {
         DominionDTO dto = this.api.getDominion(location);
         if (dto == null) return true;
         return this.api.checkPrivilegeFlag(dto, Flags.CONTAINER, player);
+    }
+
+    private boolean canOpenDoor(Player player, Location location) {
+        DominionDTO dto = this.api.getDominion(location);
+        if (dto == null) return true;
+        return this.api.checkPrivilegeFlag(dto, Flags.DOOR, player);
+    }
+
+    private boolean canUseButton(Player player, Location location) {
+        DominionDTO dto = this.api.getDominion(location);
+        if (dto == null) return true;
+        return this.api.checkPrivilegeFlag(dto, Flags.BUTTON, player);
+    }
+
+    private boolean canUsePressurePlate(Player player, Location location) {
+        DominionDTO dto = this.api.getDominion(location);
+        if (dto == null) return true;
+        return this.api.checkPrivilegeFlag(dto, Flags.PRESSURE, player);
     }
 }
