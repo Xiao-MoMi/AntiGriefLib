@@ -1,15 +1,15 @@
 package net.momirealms.antigrieflib;
 
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.Set;
 
 public final class Flag<T> {
-    public static final List<Flag<?>> ALL_FLAGS = new ObjectArrayList<>();
+    public static final Set<Flag<?>> ALL_FLAGS = new ObjectOpenHashSet<>();
     public static final Flag<Location> PLACE = Flag.of(Location.class, "place");
     public static final Flag<Location> BREAK = Flag.of(Location.class, "break");
     public static final Flag<Location> INTERACT = Flag.of(Location.class, "interact");
