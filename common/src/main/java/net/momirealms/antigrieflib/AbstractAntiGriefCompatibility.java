@@ -28,6 +28,7 @@ public abstract class AbstractAntiGriefCompatibility implements AntiGriefCompati
     public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
         @SuppressWarnings("unchecked")
         BiPredicate<Player, T> tester = (BiPredicate<Player, T>) this.flagTesters.get(flag);
-        return tester != null && tester.test(player, value);
+        if (tester == null) return true;
+        return tester.test(player, value);
     }
 }
