@@ -3,12 +3,9 @@ package net.momirealms.antigrieflib.comp;
 import com.craftaro.skyblock.api.SkyBlockAPI;
 import com.craftaro.skyblock.api.island.IslandRole;
 import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
-import net.momirealms.antigrieflib.Flag;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -23,29 +20,15 @@ public class FabledSkyBlockCompatibility extends AbstractMemberAntiGriefCompatib
     }
 
     @Override
-    public <T> boolean test(Player player, @NotNull Flag<T> flag, T value) {
-        if (value instanceof Location location) {
-            return isIslandMember(player, location);
-        } else if (value instanceof Entity entity) {
-            return isIslandMember(player, entity);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean isIslandMember(Player player, Entity entity) {
-        return isIslandMember(player, entity.getLocation());
-    }
-
-    private boolean isIslandMember(Player player, Location location) {
+    public boolean isMemberAt(Player player, Location location) {
         return Optional.ofNullable(SkyBlockAPI.getIslandManager().getIslandAtLocation(location))
                 .map(island -> {
-                     if (island.isCoopPlayer(player))
-                         return true;
-                     return Optional.ofNullable(island.getRole(player))
-                            .map(islandRole -> islandRole != IslandRole.VISITOR)
-                            .orElse(false);
-                     }
+                            if (island.isCoopPlayer(player))
+                                return true;
+                            return Optional.ofNullable(island.getRole(player))
+                                    .map(islandRole -> islandRole != IslandRole.VISITOR)
+                                    .orElse(false);
+                        }
                 )
                 .orElse(true);
     }
