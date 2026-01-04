@@ -1,16 +1,15 @@
 package net.momirealms.antigrieflib.comp;
 
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import us.talabrek.ultimateskyblock.api.uSkyBlockAPI;
 
 import java.util.Optional;
 
-public class USkyBlockCompatibility extends AbstractAntiGriefCompatibility {
+public class USkyBlockCompatibility extends AbstractMemberAntiGriefCompatibility {
 
     private uSkyBlockAPI api;
 
@@ -24,36 +23,7 @@ public class USkyBlockCompatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canPlace(Player player, Location location) {
-        return isIslandMember(player, location);
-    }
-
-    @Override
-    public boolean canBreak(Player player, Location location) {
-        return isIslandMember(player, location);
-    }
-
-    @Override
-    public boolean canInteract(Player player, Location location) {
-        return isIslandMember(player, location);
-    }
-
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
-        return isIslandMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
-        return isIslandMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
-        return isIslandMember(player, location);
-    }
-
-    private boolean isIslandMember(Player player, Location location) {
+    public boolean isMemberAt(Player player, Location location) {
         return Optional.ofNullable(api.getIslandInfo(location))
                 .map(islandInfo -> islandInfo.getMembers().contains(player.getName()))
                 .orElse(true);

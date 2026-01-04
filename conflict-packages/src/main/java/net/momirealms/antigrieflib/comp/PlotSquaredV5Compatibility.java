@@ -1,15 +1,14 @@
 package net.momirealms.antigrieflib.comp;
 
 import com.plotsquared.bukkit.util.BukkitUtil;
-import net.momirealms.antigrieflib.AbstractAntiGriefCompatibility;
+import net.momirealms.antigrieflib.AbstractMemberAntiGriefCompatibility;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Optional;
 
-public class PlotSquaredV5Compatibility extends AbstractAntiGriefCompatibility {
+public class PlotSquaredV5Compatibility extends AbstractMemberAntiGriefCompatibility {
 
     public PlotSquaredV5Compatibility(Plugin plugin) {
         super(plugin);
@@ -20,36 +19,7 @@ public class PlotSquaredV5Compatibility extends AbstractAntiGriefCompatibility {
     }
 
     @Override
-    public boolean canPlace(Player player, Location location) {
-        return isPlotMember(player, location);
-    }
-
-    @Override
-    public boolean canBreak(Player player, Location location) {
-        return isPlotMember(player, location);
-    }
-
-    @Override
-    public boolean canInteract(Player player, Location location) {
-        return isPlotMember(player, location);
-    }
-
-    @Override
-    public boolean canInteractEntity(Player player, Entity entity) {
-        return isPlotMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canDamage(Player player, Entity entity) {
-        return isPlotMember(player, entity.getLocation());
-    }
-
-    @Override
-    public boolean canOpenContainer(Player player, Location location) {
-        return isPlotMember(player, location);
-    }
-
-    private boolean isPlotMember(Player player, Location location) {
+    public boolean isMemberAt(Player player, Location location) {
         var psLocation = BukkitUtil.getLocation(location);
         if (psLocation.isPlotRoad()) return false;
         if (!psLocation.isPlotArea()) return true;
