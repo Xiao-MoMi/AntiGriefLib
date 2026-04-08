@@ -35,32 +35,32 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
     private boolean canPlace(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.build);
+        return !nbpAPI.canExecute(world, Flags.build);
     }
 
     private boolean canBreak(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.destroy);
+        return !nbpAPI.canExecute(world, Flags.destroy);
     }
 
     private boolean canInteract(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.use);
+        return !nbpAPI.canExecute(world, Flags.use);
     }
 
     private boolean canInteractEntity(Player player, Entity entity) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
         return switch (entity.getType()) {
-            case VILLAGER -> nbpAPI.canExecute(world, Flags.villager);
+            case VILLAGER -> !nbpAPI.canExecute(world, Flags.villager);
             case HORSE, DONKEY, MULE, SKELETON_HORSE, ZOMBIE_HORSE, MINECART, MINECART_CHEST, MINECART_FURNACE,
-                 MINECART_HOPPER, MINECART_TNT -> nbpAPI.canExecute(world, Flags.ride);
-            case ITEM_FRAME, GLOW_ITEM_FRAME -> nbpAPI.canExecute(world, Flags.frame);
-            case ARMOR_STAND -> nbpAPI.canExecute(world, Flags.armorstand);
-            case PAINTING -> nbpAPI.canExecute(world, Flags.painting);
-            case FISHING_HOOK -> nbpAPI.canExecute(world, Flags.hook);
+                 MINECART_HOPPER, MINECART_TNT -> !nbpAPI.canExecute(world, Flags.ride);
+            case ITEM_FRAME, GLOW_ITEM_FRAME -> !nbpAPI.canExecute(world, Flags.frame);
+            case ARMOR_STAND -> !nbpAPI.canExecute(world, Flags.armorstand);
+            case PAINTING -> !nbpAPI.canExecute(world, Flags.painting);
+            case FISHING_HOOK -> !nbpAPI.canExecute(world, Flags.hook);
             default -> true;
         };
     }
@@ -68,7 +68,7 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
     private boolean canDamageEntity(Player player, Entity entity) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(
+        return !nbpAPI.canExecute(
                 world,
                 entity instanceof Player ? Flags.pvp : Flags.mob_damage
         );
@@ -77,24 +77,24 @@ public class NoBuildPlusCompatibility extends AbstractAntiGriefCompatibility {
     private boolean canOpenContainer(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.container);
+        return !nbpAPI.canExecute(world, Flags.container);
     }
 
     private boolean canOpenDoor(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.door_interact);
+        return !nbpAPI.canExecute(world, Flags.door_interact);
     }
 
     private boolean canUseButton(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.button);
+        return !nbpAPI.canExecute(world, Flags.button);
     }
 
     private boolean canUsePressurePlate(Player player, Location location) {
         String world = player.getWorld().getName();
         if (!nbpAPI.isWorldEnabled(world)) return true;
-        return nbpAPI.canExecute(world, Flags.build);
+        return !nbpAPI.canExecute(world, Flags.pressure_plate);
     }
 }
