@@ -30,7 +30,7 @@ dependencies {
     compileOnly("net.william278.husktowns:husktowns-bukkit:3.1.4")                // HuskTowns
     compileOnly("net.william278.huskclaims:huskclaims-bukkit:1.5.10")             // HuskClaims
     compileOnly("com.intellectualsites.plotsquared:plotsquared-bukkit:7.3.5")     // PlotSquared
-    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2025.1")                      // SuperiorSkyBlock2 - API
+    compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2026.1")                      // SuperiorSkyBlock2 - API
     compileOnly("com.palmergames.bukkit.towny:towny:0.101.2.5")                   // Towny
     compileOnly("com.craftaro:FabledSkyBlock:3.0.4")                              // FabledSkyBlock
     compileOnly("com.craftaro:UltimateClaims:2.2.1")                              // UltimateClaims
@@ -45,7 +45,7 @@ dependencies {
     compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX
     compileOnly(files("libs/CrashClaim-pruned.jar"))                       // CrashClaim
     compileOnly(files("libs/XClaim.jar"))                                  // XClaim
-    compileOnly(files("libs/SuperiorSkyblock2-2025.1.jar"))                // SuperiorSkyBlock2 - Plugin
+    compileOnly(files("libs/SuperiorSkyblock2-2026.1.jar"))                // SuperiorSkyBlock2 - Plugin
     compileOnly(files("libs/uSkyBlock-3.0.0.jar"))                         // uSkyBlock
     compileOnly(files("libs/PreciousStones-1.17.1.2.jar"))                 // PreciousStones
     compileOnly(files("libs/hClaims-pruned.jar"))                          // hClaims
