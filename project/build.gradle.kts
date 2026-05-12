@@ -39,7 +39,7 @@ dependencies {
     compileOnly("biz.princeps:landlord-core:4.365")                               // Landlord
     compileOnly("com.github.UlrichBR:UClans-API:8.14.0")                          // UltimateClans
     compileOnly("cn.lunadeer:DominionAPI:4.6.0")                                  // UltimateClans
-    compileOnly("com.github.Ez4p1xEL:NoBuildPlus:1.5.52")                         // NoBuildPlus
+    compileOnly("com.github.Ez4p1xEL:NoBuildPlus:1.6.22")                         // NoBuildPlus
 
     compileOnly(files("libs/Residence-pruned.jar"))                        // Residence
     compileOnly(files("libs/KingdomsX-pruned.jar"))                        // KingdomsX
